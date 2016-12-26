@@ -3,6 +3,7 @@
  */
 
 const numeral = require('numeral')
+const $ = require('jquery')
 
 var objects = [{
 	"id": "bk001",
@@ -41,19 +42,20 @@ var formatPrice = function(price){
 	return number.format(format)
 }
 
-var tableContents = ''
-for(var i=0; i<objects.length; i++){
-	tableContents += '<tr>'
-	tableContents += '<td>' + objects[i].title + '</td>'
-	tableContents += '<td>' + objects[i].author + '</td>'
-	tableContents += '<td>' + objects[i].genre + '</td>'
-	tableContents += '<td>' + objects[i].publish_date + '</td>'
-	tableContents += '<td>' + formatPrice(objects[i].price) + '</td>'
-	tableContents += '</tr>'
-}
-
 window.onload = function () {
-	console.log(tableContents)
-	document.getElementById('table-body').innerHTML = tableContents
+	$.get('http://codeberry.fr/1/books').done(function(result){
+		var tableContents = ''
+		for(var i=0; i<result.length; i++){
+			tableContents += '<tr>'
+			tableContents += '<td>' + result[i].title + '</td>'
+			tableContents += '<td>' + result[i].author + '</td>'
+			tableContents += '<td>' + result[i].genre + '</td>'
+			tableContents += '<td>' + result[i].publish_date + '</td>'
+			tableContents += '<td>' + formatPrice(result[i].price) + '</td>'
+			tableContents += '</tr>'
+		}
+
+		document.getElementById('table-body').innerHTML = tableContents
+	})
 }
 
