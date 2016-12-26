@@ -7,7 +7,7 @@
   "license": "ISC",
   "scripts": {
     "build": "webpack",
-    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+    "start": "webpack-dev-server --inline --hot"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
