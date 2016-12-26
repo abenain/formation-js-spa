@@ -3,5 +3,11 @@
  */
 import * as React from 'react'
 
-const Application = () => <h1>Hello, world!</h1>
+import Header from "header"
+
+const Application = () => <div>
+    <Header />
+    <h1>Hello, World!</h1>
+</div>
+
 export default Application
