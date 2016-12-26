@@ -5,28 +5,36 @@
 import * as numeral from 'numeral';
 import * as jquery from 'jquery';
 
-var formatPrice = function(price: number){
-	var format = '$0,0.00',
-		number = numeral(price)
+interface Book {
+    title:string
+    author:string
+    genre:string
+    publish_date:string
+    price:number
+}
 
-	return number.format(format)
+var formatPrice = function (price:number) {
+    var format = '$0,0.00',
+        number = numeral(price)
+
+    return number.format(format)
 }
 
 window.onload = function () {
-	jquery.get('http://codeberry.fr/1/books').done(function(result){
-		var tableContents = ''
-        
-		for(var i=0; i<result.length; i++){
-            tableContents += '<tr>'
-            tableContents += '<td>' + result[i].title + '</td>'
-            tableContents += '<td>' + result[i].author + '</td>'
-            tableContents += '<td>' + result[i].genre + '</td>'
-            tableContents += '<td>' + result[i].publish_date + '</td>'
-            tableContents += '<td>' + formatPrice(result[i].price) + '</td>'
-            tableContents += '</tr>'
-		}
+    jquery.get('http://codeberry.fr/1/books').done(function (result) {
+        var tableContents = ''
 
-		document.getElementById('table-body').innerHTML = tableContents
-	})
+        result.forEach((book:Book) => {
+            tableContents += '<tr>'
+            tableContents += '<td>' + book.title + '</td>'
+            tableContents += '<td>' + book.author + '</td>'
+            tableContents += '<td>' + book.genre + '</td>'
+            tableContents += '<td>' + book.publish_date + '</td>'
+            tableContents += '<td>' + formatPrice(book.price) + '</td>'
+            tableContents += '</tr>'
+        })
+
+        document.getElementById('table-body').innerHTML = tableContents
+    })
 }
 
