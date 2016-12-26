@@ -1,0 +1,14 @@
+{
+  "name": "chapter-10-http-requests-nodejs-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Antoine Benain",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
