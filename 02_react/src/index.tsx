@@ -5,7 +5,7 @@ import * as ReactDOM from 'react-dom'
 import * as React from 'react'
 import Application from 'application'
 
-require('./styles.scss')
+//require('./styles.scss')
 
 window.onload = () => {
     ReactDOM.render(

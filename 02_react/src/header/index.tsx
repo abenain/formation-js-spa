@@ -3,13 +3,10 @@
  */
 import * as React from 'react'
 
-const Header = () => <div style={{
-    paddingLeft: 10,
-    height: 30,
-    lineHeight: 1.7,
-    color: 'white',
-    backgroundColor: "grey"
-}}>
+const styles: any = require('./styles.css')
+//const styles = require('./styles.scss')
+
+const Header = () => <div className={styles.container}>
     Test Application
 </div>
 
