@@ -5,9 +5,9 @@
 import * as numeral from 'numeral';
 import * as jquery from 'jquery';
 
-var formatPrice = function(price){
+var formatPrice = function(price: number){
 	var format = '$0,0.00',
-		number = numeral(price.trim())
+		number = numeral(price)
 
 	return number.format(format)
 }
