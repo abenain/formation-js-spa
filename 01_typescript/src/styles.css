@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    font: normal 12px/150% Arial, Helvetica, sans-serif;
+}
+
+.ff-header {
+    height: 50px;
+    background-color: #294E80;
+    color: white;
+    font-size: 16px;
+}
+
+.ff-header-logo {
+    width: 7.5em;
+    height: 1.6em;
+    margin-left: 0.5em;
+    margin-top: 0.8em;
+}
+
+.ff-table {
+    border-collapse: collapse;
+    margin-top: 40px;
+    margin-left: 40px;
+    width: 750px;
+}
+
+
+td, th {
+    padding: 3px 10px;
+    text-align: center;
+    border-left: 1px solid #294E80;
+}
+
+th {
+    font-size: 15px;
+    background-color: #294E80;
+    color: #FFFFFF;
+}
+
+td {
+    color: #00496B;
+    border-left: 1px solid #294E80;
+    font-size: 12px;
+}
+
+tbody td:first-child {
+    border-left: none;
+}

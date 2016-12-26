@@ -2,7 +2,7 @@
  * Created by antoine on 22/12/2016.
  */
 module.exports = {
-	entry: './index.js',
+	entry: './src/index.js',
 	output: {
 		path: './build',
 		publicPath: '/build/',

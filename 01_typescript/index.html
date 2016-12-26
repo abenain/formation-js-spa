@@ -2,11 +2,24 @@
 <html lang="en">
 <head>
 	<script type="text/javascript" src="./build/app.bundle.js" charset="utf-8"></script>
+	<link rel="stylesheet" href="./src/styles.css">
 	<meta charset="UTF-8">
 	<title>Chapitre 1: Typescript</title>
 </head>
 <body>
-	<button onClick="handleClick()">Click me</button>
+	<div class="ff-header">
+		<img class="ff-header-logo" src="/assets/logo.svg">
+	</div>
+	<table class="ff-table">
+		<thead>
+			<th>Titre</th>
+			<th>Auteur</th>
+			<th>Genre</th>
+			<th>Date de publication</th>
+			<th>Prix</th>
+		</thead>
+		<tbody id="table-body"></tbody>
+	</table>
 
 </body>
 </html>
