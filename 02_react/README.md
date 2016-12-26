@@ -1,5 +1,5 @@
-Formation Javascript Frontend: 02 - React
-=========================================
+Single Page Applications: Chapter 02 - React
+============================================
 
 Installation
 ------------

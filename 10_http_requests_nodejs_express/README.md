@@ -1,4 +1,4 @@
-Single Page Applications: Chapter 20 - HTTP Requests with NodeJS & Express
+Single Page Applications: Chapter 10 - HTTP Requests with NodeJS & Express
 ==========================================================================
 
 Installation

@@ -1,5 +1,5 @@
-Formation Javascript Frontend: 01 - Typescript
-==============================================
+Single Page Applications: Chapter 01 - Typescript
+=================================================
 
 Installation
 ------------
