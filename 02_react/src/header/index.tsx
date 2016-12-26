@@ -3,8 +3,7 @@
  */
 import * as React from 'react'
 
-const styles: any = require('./styles.css')
-//const styles = require('./styles.scss')
+const styles: any = require('./styles.scss')
 
 const Header = () => <div className={styles.container}>
     Test Application

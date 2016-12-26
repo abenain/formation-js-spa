@@ -1,7 +1,10 @@
+$header-bg-color: #222222;
+$header-text-color: #00D8FF;
+
 .container{
 	padding-left: 10px;
-	height: 30px;
-	line-height: 1.7;
-	color: white;
-	background-color: grey;
+	height: 50px;
+	line-height: 2;
+	color: $header-text-color;
+	background-color: $header-bg-color;
 }
