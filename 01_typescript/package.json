@@ -1,13 +1,14 @@
 {
-  "name": "formation-frontend-00-typescript",
+  "name": "exercices-typescript",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Antoine Benain",
   "license": "ISC",
+  "scripts": {
+    "build": "webpack",
+    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+  },
   "devDependencies": {
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
