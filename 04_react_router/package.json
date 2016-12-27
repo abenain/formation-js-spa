@@ -1,5 +1,5 @@
 {
-  "name": "chapter-03-forms-with-material-ui",
+  "name": "chapter-04-react-router",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
     "build:watch": "webpack --config config/webpack.config.js --watch",
-    "start": "webpack-dev-server --config config/webpack.config.js --inline --hot"
+    "start": "webpack-dev-server --config config/webpack.config.js --inline --hot --history-api-fallback"
   },
   "devDependencies": {
     "@types/classnames": "0.0.32",

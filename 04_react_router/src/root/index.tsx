@@ -6,7 +6,7 @@ import * as React from 'react'
 import Router from 'react-router/lib/Router'
 import Route from 'react-router/lib/Route'
 import IndexRoute from 'react-router/lib/IndexRoute'
-import hashHistory from 'react-router/lib/hashHistory'
+import browserHistory from 'react-router/lib/browserHistory'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 
@@ -20,7 +20,7 @@ injectTapEventPlugin();
 
 window.onload = () => {
     ReactDOM.render(
-        <Router history={hashHistory}>
+        <Router history={browserHistory}>
             <Route path='/' component={Application}>
                 <Route path='/books' component={Books} />
                 <IndexRoute component={Home}/>
