@@ -1,3 +1,5 @@
+var webpack = require('webpack')
+
 /**
  * Created by antoine on 22/12/2016.
  */
@@ -21,5 +23,6 @@ module.exports = {
 			{ test: /\.scss$/, loaders: ['style', 'css-loader?modules&importLoaders=1&localIdentName=[local]-[hash:base64:5]', 'postcss-loader', 'sass'] },
 			{ test: /\.(png|svg|gif|jpg|jpeg)$/, loaders: [ 'url-loader', 'image-webpack?bypassOnDebug']}
 		]
-	}
+	},
+	plugins: [new webpack.ProvidePlugin({React: 'react'})]
 };
