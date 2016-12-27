@@ -1,12 +1,11 @@
-$header-bg-color: #222222;
-$header-text-color: #00D8FF;
+@import '../root/_variables.scss';
 
 .container{
 	padding-left: 10px;
 	height: 50px;
 	line-height: 2;
-	color: $header-text-color;
-	background-color: $header-bg-color;
+	color: $main-text-color;
+	background-color: $main-bg-color;
 }
 
 .title{

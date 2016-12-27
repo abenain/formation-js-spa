@@ -3,6 +3,8 @@
  */
 import * as React from 'react'
 
+const styles = require('./styles.scss')
+
 interface Book{
     id: string
     title: string
@@ -16,13 +18,13 @@ interface Props{
 }
 
 const List = ({books}: Props) => <div>
-    <table>
+    <table className={styles.bookTable}>
         <thead>
         <tr>
-            <td>Titre</td>
-            <td>Auteur</td>
-            <td>Publication</td>
-            <td>Prix</td>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>Publication</th>
+            <th>Prix</th>
         </tr>
         </thead>
         <tbody>
