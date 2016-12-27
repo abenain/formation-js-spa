@@ -3,15 +3,9 @@
  */
 import * as React from 'react'
 
-const styles = require('./styles.scss')
+import {Book} from 'types'
 
-interface Book{
-    id: string
-    title: string
-    author: string
-    publish_date: string
-    price: number
-}
+const styles = require('./styles.scss')
 
 interface Props{
     books: Book[]

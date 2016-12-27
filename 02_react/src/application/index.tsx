@@ -4,7 +4,8 @@
 import * as React from 'react'
 
 import Header from "header"
-import List from "list"
+//import List from "list"
+import Grid from "grid"
 
 const title = 'Test ReactJS Application'
 
@@ -40,7 +41,7 @@ const books = [{
 
 const Application = () => <div>
     <Header title={title}/>
-    <List books={books}/>
+    <Grid books={books}/>
 </div>
 
 export default Application
