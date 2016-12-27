@@ -37,7 +37,7 @@ export default class Settings extends React.Component<Props, {}> {
                     <div className={styles.control}>
                         <TextField ref='username'
                                    hintText='Nom utilisateur'
-                                   defaultValue={this.props.store.getState().username}/>
+                                   defaultValue={this.props.store.getState().settings.username}/>
                     </div>
                 </div>
 

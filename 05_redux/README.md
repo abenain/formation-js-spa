@@ -1,5 +1,5 @@
-Single Page Applications: Chapter 04 - React-router
-===================================================
+Single Page Applications: Chapter 05 - Redux
+============================================
 
 Installation
 ------------

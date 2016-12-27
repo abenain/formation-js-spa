@@ -1,7 +1,15 @@
-const reducer = (state = {
-    username: 'anonymous'
-}, action: any) => {
-    return Object.assign({}, state, action.payload)
+import { combineReducers } from 'redux'
+import { routerReducer } from 'react-router-redux'
+
+const settingsReducer = (state: any, action: any) => {
+    return Object.assign({ username: 'anonymous' }, state, action.payload)
 }
 
-export default reducer
+const makeGlobalReducer = () => {
+    return combineReducers({
+        settings: settingsReducer,
+        routing: routerReducer
+    })
+}
+
+export default makeGlobalReducer

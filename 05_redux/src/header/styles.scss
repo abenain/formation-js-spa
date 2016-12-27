@@ -6,6 +6,7 @@
 	line-height: 2;
 	color: $main-text-color;
 	background-color: $main-bg-color;
+	cursor: pointer;
 }
 
 .title{
@@ -23,4 +24,5 @@
 .username{
 	float: right;
 	padding: 10px;
+	margin-right: 10px;
 }
