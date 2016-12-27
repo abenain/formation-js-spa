@@ -6,20 +6,31 @@ import {MuiThemeProvider, lightBaseTheme, getMuiTheme} from 'material-ui/styles'
 import { Store } from 'redux'
 
 import {GlobalState} from "types";
+import rerender from './rerenderElementWhenStoreChanges'
 import Header from "header"
 
 const title = 'Test ReactJS Application'
 
 interface Props{
-    children: any,
+    children?: any,
     store: Store<GlobalState>
 }
 
-const Application = ({children, store}: Props) => <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
-    <div>
-        <Header title={title} store={store}/>
-        {children}
-    </div>
-</MuiThemeProvider>
+export default class Application extends React.Component<Props, {}>{
+    public static childContextTypes: React.ValidationMap<{}> = {}
+    public getChildContext() { return {} }
 
-export default Application
+    public constructor(props: Props){
+        super(props)
+        rerender(this, this.props.store)
+    }
+
+    public render(){
+        return <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
+            <div>
+                <Header title={title} store={this.props.store}/>
+                {this.props.children}
+            </div>
+        </MuiThemeProvider>
+    }
+}

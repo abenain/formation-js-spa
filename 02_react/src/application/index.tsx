@@ -4,23 +4,29 @@
 import * as React from 'react'
 import {Maybe} from 'tsmonad'
 import axios from 'axios'
+import { Store } from 'redux'
 
+import {GlobalState} from "types";
 import Header from 'header'
 import List from 'list'
 import Grid from 'grid'
 import {Book} from 'types'
 
+interface Props{
+    store: Store<GlobalState>
+}
+
 interface State{
-    view: string,
+    view: string
     books: Maybe<Book[]>
 }
 
 const styles = require('./styles.scss')
 const title = 'Test ReactJS Application'
 
-export default class Application extends React.Component<{}, State>{
-    public constructor(){
-        super()
+export default class Application extends React.Component<Props, State>{
+    public constructor(props: Props){
+        super(props)
         this.state = {
             view: 'list',
             books: Maybe.nothing<Book[]>()

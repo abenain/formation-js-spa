@@ -1,10 +1,15 @@
 import * as React from 'react'
 import axios from 'axios'
-import {Maybe} from 'tsmonad'
+import { Maybe } from 'tsmonad'
+import { Store } from 'redux'
 
 import List from "books/list"
 import Grid from "books/grid"
-import {Book} from 'types'
+import { Book, GlobalState } from 'types'
+
+interface Props{
+    store: Store<GlobalState>
+}
 
 interface State {
     view:string,
@@ -13,9 +18,9 @@ interface State {
 
 const styles = require('./styles.scss')
 
-export default class Books extends React.Component<{}, State> {
-    public constructor() {
-        super()
+export default class Books extends React.Component<Props, State> {
+    public constructor(props: Props) {
+        super(props)
         this.state = {
             view: 'list',
             books: Maybe.nothing<Book[]>()

@@ -29,14 +29,16 @@ injectTapEventPlugin();
 
 window.onload = () => {
     ReactDOM.render(
-        <Router history={browserHistory}
-                createElement={(component: React.ComponentClass<any>, props: any) => React.createElement(component, Object.assign({}, props, { store }))}>
-            <Route path='/' component={Application}>
-                <Route path='/books' component={Books} />
-                <Route path='/settings' component={Settings} />
-                <IndexRoute component={Home}/>
-            </Route>
-        </Router>,
+        <Application store={store}>
+            <Router history={browserHistory}
+                    createElement={(component: React.ComponentClass<any>, props: any) => React.createElement(component, Object.assign({}, props, { store }))}>
+                <Route path='/'>
+                    <Route path='/books' component={Books} />
+                    <Route path='/settings' component={Settings} />
+                    <IndexRoute component={Home}/>
+                </Route>
+            </Router>
+        </Application>,
         document.getElementById('root')
     );
 }
