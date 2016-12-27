@@ -9,6 +9,7 @@ const Home = () => <div className={styles.container}>
         <h3>This is the homepage. From here you can go to:</h3>
         <ul>
             <li><Link to="/books">Book list</Link></li>
+            <li><Link to="/settings">Settings</Link></li>
         </ul>
     </Paper>
 </div>
