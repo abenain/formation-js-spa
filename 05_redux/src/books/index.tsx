@@ -7,8 +7,8 @@ import Grid from "books/grid"
 import {Book} from 'types'
 
 interface State {
-    view:string,
-    books:Maybe<Book[]>
+    view: string
+    books: Maybe<Book[]>
 }
 
 const styles = require('./styles.scss')

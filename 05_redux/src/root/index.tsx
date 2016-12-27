@@ -13,11 +13,17 @@ import { createStore } from 'redux'
 import Application from 'application'
 import Books from "books"
 import Home from 'home'
+import Settings from 'settings'
 import reducer from "./reducer"
 
 require('./styles.scss')
 
 const store = createStore(reducer)
+
+store.subscribe(() => {
+    console.log('store changed')
+    console.log(store.getState())
+})
 
 injectTapEventPlugin();
 
@@ -27,6 +33,7 @@ window.onload = () => {
                 createElement={(component: React.ComponentClass<any>, props: any) => React.createElement(component, Object.assign({}, props, { store }))}>
             <Route path='/' component={Application}>
                 <Route path='/books' component={Books} />
+                <Route path='/settings' component={Settings} />
                 <IndexRoute component={Home}/>
             </Route>
         </Router>,
