@@ -14,7 +14,7 @@ interface Props{
 const Grid = ({books}: Props) => <div className={styles.bookGrid}>
     {books.map((book: Book) => <div key={book.id} className={styles.book}>
         <BookIcon className={styles.icon}/>
-        <div className={styles.title}>{book.title}</div>
+        <div className={styles.title} title={book.title}>{book.title}</div>
     </div>)}
 </div>
 

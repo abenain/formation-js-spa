@@ -3,19 +3,10 @@
  */
 import * as ReactDOM from 'react-dom'
 import * as React from 'react'
-import axios from 'axios'
 
 import Application from 'application'
 
 require('./styles.scss')
-
-axios.get('http://localhost:3000/books')
-    .then(function (response) {
-        console.log(response);
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
 
 window.onload = () => {
     ReactDOM.render(
