@@ -1,0 +1,33 @@
+.container{
+	margin: 100px auto;
+	width: 550px;
+}
+
+.card{
+	padding: 50px 0;
+}
+
+.label{
+	display: inline-block;
+	text-align: right;
+	margin-right: 8px;
+	width: 200px;
+}
+
+.multilineTextFieldLabel{
+	vertical-align: top;
+	margin-top: 15px;
+}
+
+.control{
+	display: inline-block;
+}
+
+.submit{
+	margin: 12px;
+	margin-top: 60px;
+}
+
+.textCenter{
+	text-align: center;
+}
