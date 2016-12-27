@@ -58,7 +58,9 @@ export default class Books extends React.Component<{}, State> {
                     {bookView}
                 </div>
             },
-            nothing: () => <div>Loading...</div>
+            nothing: () => <div className={styles.loading}>
+                <span>Loading...</span>
+            </div>
         })
     }
 }
