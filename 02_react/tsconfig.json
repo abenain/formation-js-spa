@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
+    "allowJs": false,
     "target": "es6",
+    "jsx": "react",
     "moduleResolution": "node",
-    "jsx": "preserve",
     "baseUrl": "src",
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
