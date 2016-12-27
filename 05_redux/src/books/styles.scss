@@ -1,0 +1,29 @@
+@import '../root/_variables.scss';
+
+.buttonContainer {
+	width: 180px;
+	margin: 50px auto;
+}
+
+.switchViewModeButton {
+	cursor: pointer;
+	-webkit-border-radius: 12;
+	-moz-border-radius: 12;
+	border-radius: 12px;
+	font-family: Arial;
+	color: $main-text-color;
+	font-size: 20px;
+	background: $main-bg-color;
+	padding: 10px 20px 10px 20px;
+	text-decoration: none;
+}
+
+.switchViewModeButton:hover {
+	cursor: pointer;
+	background-color: lighten( $main-bg-color, 20% );
+	text-decoration: none;
+}
+
+.switchViewModeButton:focus {
+	outline:0;
+}
