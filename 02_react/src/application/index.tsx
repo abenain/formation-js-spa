@@ -4,9 +4,14 @@
 import * as React from 'react'
 
 import Header from "header"
-//import List from "list"
+import List from "list"
 import Grid from "grid"
 
+interface State{
+    view: string
+}
+
+const styles = require('./styles.scss')
 const title = 'Test ReactJS Application'
 
 const books = [{
@@ -39,9 +44,33 @@ const books = [{
     "price": 39.95
 }]
 
-const Application = () => <div>
-    <Header title={title}/>
-    <Grid books={books}/>
-</div>
+export default class Application extends React.Component<{}, State>{
+    public constructor(){
+        super()
+        this.state = {
+            view: 'list'
+        }
+    }
 
-export default Application
+    private switchView(){
+        const newView = this.state.view === 'list' ? 'grid' : 'list'
+        this.setState({
+            view: newView
+        })
+    }
+
+    private getSwitchViewButton(){
+        const buttonLabel = this.state.view === 'list' ? 'Vue Grille' : 'Vue Liste'
+        return <div className={styles.buttonContainer}>
+            <button  className={styles.switchViewModeButton} onClick={() => this.switchView()}>{buttonLabel}</button>
+        </div>
+    }
+    public render(){
+        return <div>
+            <Header title={title}/>
+            {this.getSwitchViewButton()}
+            {this.state.view === 'grid' ? <Grid books={books}/> : null}
+            {this.state.view === 'list' ? <List books={books}/> : null}
+        </div>
+    }
+}
