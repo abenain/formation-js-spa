@@ -18,7 +18,8 @@ module.exports = {
 		loaders: [
 			// .ts(x) files should first pass through the Typescript loader, and then through babel
 			{ test: /\.tsx?$/, loaders: ['babel', 'ts-loader'] },
-			{ test: /\.scss$/, loaders: ['style', 'css-loader?modules&importLoaders=1&localIdentName=[local]-[hash:base64:5]', 'postcss-loader', 'sass'] }
+			{ test: /\.scss$/, loaders: ['style', 'css-loader?modules&importLoaders=1&localIdentName=[local]-[hash:base64:5]', 'postcss-loader', 'sass'] },
+			{ test: /\.(png|svg|gif|jpg|jpeg)$/, loaders: [ 'url-loader', 'image-webpack?bypassOnDebug']}
 		]
 	}
 };

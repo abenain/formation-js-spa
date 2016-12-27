@@ -8,3 +8,16 @@ $header-text-color: #00D8FF;
 	color: $header-text-color;
 	background-color: $header-bg-color;
 }
+
+.title{
+	display: inline-block;
+	vertical-align: top;
+	padding-top: 10px;
+	margin-left: 10px;
+}
+
+.logo{
+	margin: 10px;
+	height: 30px;
+	width: 30px;
+}
