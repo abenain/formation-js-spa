@@ -29,6 +29,7 @@ body {
 }
 
 .ff-table-panel {
+    padding-top: 100px;
     width: 750px;
     margin: 0 auto;
 }
@@ -38,6 +39,10 @@ body {
     width: 750px;
 }
 
+.ff-header-sort-indicator{
+    margin-left: 7px;
+    vertical-align: middle;
+}
 
 td, th {
     padding: 3px 10px;
@@ -46,6 +51,7 @@ td, th {
 }
 
 th {
+    cursor: pointer;
     font-size: 15px;
     background-color: #294E80;
     color: #FFFFFF;
