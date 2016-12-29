@@ -17,10 +17,24 @@ body {
     margin-top: 0.8em;
 }
 
+.ff-button-panel{
+    width: 150px;
+    margin: 50px auto;
+}
+
+.ff-render-table-button{
+    height: 30px;
+    width: 150px;
+    font-size: 14px;
+}
+
+.ff-table-panel {
+    width: 750px;
+    margin: 0 auto;
+}
+
 .ff-table {
     border-collapse: collapse;
-    margin-top: 40px;
-    margin-left: 40px;
     width: 750px;
 }
 
