@@ -38,6 +38,11 @@ class Table{
 }
 
 window.onload = function () {
+    let table = new Table([])
+
+    // The following line will cause click handler to fail beacuse this is not what expected
+    $('button.ff-render-table-button').click(table.render) // ERROR: Uncaught TypeError: Cannot read property 'map' of undefined
+
     $.get('http://localhost:3000/books').done(function (result) {
         const table = new Table(result)
 
