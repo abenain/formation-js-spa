@@ -6,7 +6,7 @@
     "alwaysStrict": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
-    "noImplicitThis": true,
+    "noImplicitThis": false,
     "noUnusedLocals": true,
     "removeComments": true,
     "noEmitOnError": true
