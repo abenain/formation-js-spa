@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@types/jquery": "^2.0.34",
+    "@types/lodash": "^4.14.45",
     "@types/numeral": "0.0.18",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
@@ -27,6 +28,7 @@
   },
   "dependencies": {
     "jquery": "^3.1.1",
+    "lodash": "^4.17.3",
     "numeral": "^2.0.4"
   }
 }
