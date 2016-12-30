@@ -28,8 +28,13 @@ body {
     font-size: 14px;
 }
 
+.ff-checbox-container{
+    padding: 50px 0;
+    display: inline-block;
+    width: 150px;
+}
+
 .ff-table-panel {
-    padding-top: 100px;
     width: 750px;
     margin: 0 auto;
 }
