@@ -7,23 +7,59 @@ const path = require("path")
 
 const BookController = {
     // Return all books
-    index: (request: Express.Request, response: Express.Response) => {
-        // path to JSON file
-        const booksFilePath = path.join(__dirname, 'books.json')
+    index: (request:Express.Request, response:Express.Response) => {
+        // consrtucting path to data directory
+        const dataDirPath = path.join(__dirname, '..', '..', '..', '..', 'data')
 
-        // Async read contents of JSON file
-        fs.readFile(booksFilePath, (error: any, data: any) => {
+        // Read contents of directory
+        fs.readdir(dataDirPath, (error:Error, bookFileNames:string[]) => {
             // deal with errors
-            if(Boolean(error)){
+            if (Boolean(error)) {
                 response.status(500)
                 return response.end()
             }
 
-            // parse data read from file
-            const books = JSON.parse(data.toString())
+            // Initialize result array of books
+            const books:Object[] = []
 
-            // return JSON data in HTTP reponse
-            return response.json(books)
+            // Initialize mutable variable to remember how many files we read
+            let readFilesCounter = 0
+
+            // For each book file, perform async reading of file
+            for (const currentFile of bookFileNames) {
+
+                // consrtucting path to current book file
+                const currentFilePath = path.join(dataDirPath, currentFile)
+
+                fs.readFile(currentFilePath, (error:Error, data:any) => {
+                    readFilesCounter = readFilesCounter + 1
+
+                    if (Boolean(error)) {
+                        // deal with errors
+                        console.error('error while reading file: ' + currentFilePath)
+                        console.error(error)
+                    } else {
+                        // parse data read from file
+                        const book = JSON.parse(data.toString())
+
+                        // add book to result array
+                        books.push(book)
+                    }
+
+                    // If all book files have been read
+                    if (readFilesCounter === bookFileNames.length) {
+                        // If result array contains exact number of book files, it's a success
+                        if (books.length === bookFileNames.length) {
+                            // return JSON data in HTTP reponse
+                            return response.json(books)
+                        }
+
+                        // Else, something went wrong
+                        response.status(500)
+                        return response.end()
+                    }
+                })
+            }
         })
     }
 }
