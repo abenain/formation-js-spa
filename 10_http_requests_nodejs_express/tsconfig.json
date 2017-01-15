@@ -14,5 +14,6 @@
     "noUnusedLocals": true,
     "removeComments": true,
     "noEmitOnError": true
-  }
+  },
+  "include": ["src/**/*"]
 }
