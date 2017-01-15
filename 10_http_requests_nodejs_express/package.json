@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc --target es5 --outDir build",
-    "start": "node index.js",
-    "watch": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts"
+    "build:watch": "tsc -w --target es5 --outDir build",
+    "start": "node build/index.js",
+    "watch": "concurrently --kill-others \"npm run build:watch\" \"nodemon build/index.js\""
   },
   "author": "Antoine Benain",
   "license": "ISC",
