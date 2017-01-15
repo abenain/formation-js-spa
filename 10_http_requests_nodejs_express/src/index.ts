@@ -1,8 +1,8 @@
 /**
  * Created by antoine on 22/12/2016.
  */
-var express = require('express'),
-    app = express()
+import * as express from 'express'
+const app = express()
 
 app.get('/books', function (req, res) {
 	var books = [{
