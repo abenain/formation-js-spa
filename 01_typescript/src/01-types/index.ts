@@ -76,3 +76,13 @@ if(true){
 
 console.log(untyped)
 console.log(firstNumber)
+
+const isDone: boolean = false
+const decimal: number = 6
+const color: string = 'blue'
+const array: number[] = [1, 2, 3]
+const notSure: any = 4
+
+console.log(isDone)
+console.log(decimal)
+console.log(notSure)
