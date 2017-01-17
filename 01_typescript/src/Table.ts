@@ -5,7 +5,6 @@ import * as $ from 'jquery'
 
 import { Book, TableConfig, Filter } from './types'
 import { renderFilters, renderTable } from './TableRenderer'
-import BookStore from './BookStore'
 
 const Table = (userConfig: TableConfig) => {
     // Apply provided config to default config
@@ -37,12 +36,13 @@ const Table = (userConfig: TableConfig) => {
         }]
     }, userConfig)
 
-    // Create BookStore
-    const store = BookStore(config)
+    // TODO Create BookStore
+    // const store = BookStore(config)
     
     return {
         updateBooks: (newBooks:Book[]) => {
-            store.setBooks(newBooks)
+            // TODO update books in store
+            // store.setBooks(newBooks)
         },
         filterChanged: (event: any) => {
             // Parsing HTML event
@@ -59,8 +59,8 @@ const Table = (userConfig: TableConfig) => {
                 }
             })
 
-            // pushing config updates to store
-            store.updateConfig(config)
+            // TODO pushing config updates to store
+            // store.updateConfig(config)
         },
         sortOnColumn: (columnKey: string) => {
             // Mutable variable for sort direction
@@ -77,10 +77,15 @@ const Table = (userConfig: TableConfig) => {
                 direction: newSortDirection
             }
 
-            // pushing config updates to store
-            store.updateConfig(config)
+            // TODO pushing config updates to store
+            //store.updateConfig(config)
         },
-        render: () => $('<div></div>').append(renderFilters(config), renderTable(store.getBooks(), config))
+        render: () => {
+            // TODO: get filtered and sorted list from BookStore
+            // const books = store.getBooks()
+            const books: Book[] = []
+            return $('<div></div>').append(renderFilters(config), renderTable(books, config))
+        }
     }
 }
 
