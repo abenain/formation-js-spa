@@ -222,7 +222,7 @@ window.onload = function () {
         renderTable()
     }
 
-    $.get('http://localhost:3000/1/books').done(function (result) {
+    $.get('http://codeberry.fr/1/books').done(function (result) {
         table.updateBooks(result)
 
         renderTable()
