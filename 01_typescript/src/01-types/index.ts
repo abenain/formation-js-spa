@@ -63,3 +63,16 @@ console.log('typeof looselyTyped -> ' + typeof looselyTyped)
 looselyTyped = 'toto'
 console.log('typeof looselyTyped -> ' + typeof looselyTyped)
 
+
+
+
+const untyped = 55
+const firstNumber: number = 12
+
+if(true){
+    const blockScopedNumber = 500
+}
+
+
+console.log(untyped)
+console.log(firstNumber)
