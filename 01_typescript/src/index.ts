@@ -15,16 +15,16 @@ var formatPrice = function(price: number){
 window.onload = function () {
 	jquery.get('http://codeberry.fr/1/books').done(function(result){
 		var tableContents = ''
-        
-		for(var i=0; i<result.length; i++){
+
+		result.forEach((book) => {
             tableContents += '<tr>'
-            tableContents += '<td>' + result[i].title + '</td>'
-            tableContents += '<td>' + result[i].author + '</td>'
-            tableContents += '<td>' + result[i].genre + '</td>'
-            tableContents += '<td>' + result[i].publish_date + '</td>'
-            tableContents += '<td>' + formatPrice(result[i].price) + '</td>'
+            tableContents += '<td>' + book.title + '</td>'
+            tableContents += '<td>' + book.author + '</td>'
+            tableContents += '<td>' + book.genre + '</td>'
+            tableContents += '<td>' + book.publish_date + '</td>'
+            tableContents += '<td>' + formatPrice(book.price) + '</td>'
             tableContents += '</tr>'
-		}
+		})
 
 		document.getElementById('table-body').innerHTML = tableContents
 	})
