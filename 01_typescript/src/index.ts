@@ -5,13 +5,7 @@
 import * as numeral from 'numeral';
 import * as jquery from 'jquery';
 
-interface Book {
-    title:string
-    author:string
-    genre:string
-    publish_date:string
-    price:number
-}
+import { Book } from './types'
 
 var formatPrice = function (price:number) {
     var format = '$0,0.00',
