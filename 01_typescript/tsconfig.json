@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "allowJs": false,
+    "allowJs": true,
     "target": "es6",
     "module": "commonjs",
     "alwaysStrict": true,
@@ -9,6 +9,6 @@
     "noImplicitThis": false,
     "noUnusedLocals": true,
     "removeComments": true,
-    "noEmitOnError": true
+    "noEmitOnError": false
   }
 }
