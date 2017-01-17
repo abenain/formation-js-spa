@@ -6,14 +6,7 @@ import * as numeral from 'numeral'
 import * as $ from 'jquery'
 import * as _ from 'lodash'
 
-interface Book {
-    title:string
-    author:string
-    genre:string
-    publish_date:string
-    price:number
-    [key:string]:string | number
-}
+import Book from './Book'
 
 interface Column {
     key:string,
