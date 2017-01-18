@@ -15,7 +15,7 @@ const formatPrice = (price: number) => {
 }
 
 const formatDate = (date: string) => {
-    return moment(date).format('Qo MMMM YYYY')
+    return moment(date).format('Do MMMM YYYY')
 }
 
 export const renderFilters = (config: TableConfig) => {
