@@ -4,13 +4,13 @@
 import * as fs from 'fs'
 import * as path from 'path'
 
-const dirPath = path.join(__dirname, '..', 'data')
+const filePath = path.join(__dirname, '..', 'data', 'bk101.json')
 
-fs.readdir(dirPath, (error, data) => {
+fs.readFile(filePath, (error, data) => {
     if(Boolean(error)){
         throw error
     }
 
-    console.log('Contents of directory ' + dirPath)
-    console.log(data)
+    console.log('Contents of file ' + filePath)
+    console.log(JSON.parse(data.toString()))
 })
