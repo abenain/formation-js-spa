@@ -1,0 +1,16 @@
+{
+  "name": "chapter-10-node-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --target es5 --outDir build",
+    "build:watch": "tsc -w --target es5 --outDir build",
+    "start": "node build/index.js",
+    "watch": "concurrently --kill-others \"npm run build:watch\" \"nodemon build/index.js\""
+  },
+  "author": "Antoine Benain",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {}
+}
