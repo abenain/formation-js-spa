@@ -1,5 +1,5 @@
-Single Page Applications: Chapter 10 - HTTP Requests with NodeJS & Express
-==========================================================================
+Single Page Applications: Chapter 11 - REST API with ExpressJS
+==============================================================
 
 Pre-requisites
 --------------
