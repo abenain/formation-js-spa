@@ -4,13 +4,33 @@
 import * as fs from 'fs'
 import * as path from 'path'
 
-const filePath = path.join(__dirname, '..', 'data', 'bk101.json')
+// Construct path to data directory
+const dirPath = path.join(__dirname, '..', 'data')
 
-fs.readFile(filePath, (error, data) => {
+// async reading of data directory contents
+fs.readdir(dirPath, (error, dirContents) => {
+
+    // Deal with errors
     if(Boolean(error)){
         throw error
     }
 
-    console.log('Contents of file ' + filePath)
-    console.log(JSON.parse(data.toString()))
+    // Looping on filenames
+    dirContents.forEach((filename) => {
+
+        // Construct path to file
+        const filePath = path.join(dirPath, filename)
+
+        // async reading of file contents
+        fs.readFile(filePath, (error, data) => {
+
+            // Deal with errors
+            if(Boolean(error)){
+                throw error
+            }
+
+            console.log('Contents of file ' + filePath)
+            console.log(JSON.parse(data.toString()))
+        })
+    })
 })
