@@ -11,8 +11,11 @@
   },
   "author": "Antoine Benain",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "q": "^1.4.1"
+  },
   "devDependencies": {
-    "@types/node": "^7.0.0"
+    "@types/node": "^7.0.0",
+    "@types/q": "0.0.32"
   }
 }
