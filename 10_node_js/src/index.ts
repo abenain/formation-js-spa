@@ -1,64 +1,89 @@
 /**
  * Created by antoine on 22/12/2016.
  */
-import * as fs from 'fs'
-import * as path from 'path'
 import * as q from 'q'
+import * as http from 'http'
 
+const makeHTTPRequest = (options: any) => {
+    const deferred = q.defer()
 
-const readFile = q.denodeify(fs.readFile)
-const readDir = q.denodeify(fs.readdir)
+    http.request(options, (response: any) => {
+        var str = ''
 
-// Construct path to data directory
-const dirPath = path.join(__dirname, '..', 'data')
+        //another chunk of data has been recieved, so append it to `str`
+        response.on('data', (chunk: any) => {
+            str += chunk;
+        })
 
-interface File {
-    path: string
-    contents: number
+        //the whole response has been recieved, so we just print it out here
+        response.on('end', () => {
+            deferred.resolve(str)
+        })
+
+        response.on('abort', () => {
+            deferred.reject(new Error('HTTP request aborted by client'))
+        })
+
+        response.on('aborted', () => {
+            deferred.reject(new Error('HTTP request aborted by server'))
+        })
+    }).end();
+
+    return deferred.promise
 }
 
-// async reading of data directory contents
-readDir(dirPath).then((dirContents: string[]) => {
+const Son = {
+    getWeather: () => {
+        // Creer un deferred pour gerer la promise
+        const deferred = q.defer()
 
-    // Initializing array of promises
-    const promises: q.Promise<File>[] = []
+        // Appel async a un webservice meteo
+        makeHTTPRequest({host: 'codeberry.fr', path: '/weather'}).then((response: any) => {
 
-    // Looping on filenames
-    dirContents.forEach((filename: string) => {
+            if(response === 'Sunny Weather'){
+                // La meteo est bonne, on utilise le deferred pour resolve la promise
+                deferred.resolve({status: 'good'})
+            }else{
+                // La meteo est mauvaise, on utilise le deferred pour resolve la promise
+                deferred.resolve({status: 'bad'})
+            }
 
-        // Construct path to file
-        const filePath = path.join(dirPath, filename)
+        }).catch(() => {
 
-        // adding readFile promise to the promise array
-        promises.push(readFile(filePath).then((fileContents: number) => ({
-            path: filePath,
-            contents: fileContents
-        })))
-    })
+            // erreur HTTP on utilise le deferred pour reject la promise
+            deferred.reject(new Error('Sorry dad, couldnt check the weather'))
 
-    // return a promise that'll resolve when all promises in array have resolved
-    return q.all(promises)
+        })
 
-}).then((allFiles: File[]) => {
+        return deferred.promise
+    }
+}
 
-    console.log('--- Contents of directory ' + dirPath)
-    
-    // loop through array of results from readFile promises
-    allFiles.forEach(file => {
+const prepareDinner = () => {
+    console.log('Yum Yum!')
+}
 
-        // Parsing file contents to a javascript object
-        const fileContents = JSON.parse(file.contents.toString())
+const prepareFishingTrip = () => {
+    console.log("Let's go fishiiiiiiiiing!")
+}
 
-        // Printing file contents
-        console.log('[' + fileContents.id + '] -> ' + file.path)
-    })
-    
-    console.log('---')
-    console.log(allFiles.length + ' items found')
+const makePromiseWithSon = () => {
 
-}).catch((error) => {
+    // Cette fonction retourne une promise
+    Son.getWeather()
+        // callback lorsque la promise est resolved
+        .then((weatherForecast: any) => {
 
-    // Deal with errors
-    throw error
+            if(weatherForecast.status === 'good'){
+                prepareFishingTrip()
+            }else{
+                prepareDinner()
+            }
+        })
+        // callback lorque la promise est rejected
+        .catch(() => {
+            prepareDinner()
+        })
+}
 
-})
+makePromiseWithSon()
