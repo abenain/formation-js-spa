@@ -12,5 +12,7 @@
   "author": "Antoine Benain",
   "license": "ISC",
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/node": "^7.0.0"
+  }
 }

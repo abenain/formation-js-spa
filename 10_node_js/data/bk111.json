@@ -1,0 +1,9 @@
+{
+  "id": "bk111",
+  "author": "O'Brien, Tim",
+  "title": "MSXML3: A Comprehensive Guide",
+  "genre": "Computer",
+  "price": 36.95,
+  "publish_date": "2000-12-01",
+  "description": "The Microsoft MSXML3 parser is covered in detail, with attention to XML DOM interfaces, XSLT processing, SAX and more."
+}
