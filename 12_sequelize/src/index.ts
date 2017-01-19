@@ -1,10 +1,17 @@
 /**
  * Created by antoine on 19/01/2017.
  */
-import sequelize from './models'
+import * as Express from 'express'
 
-sequelize.models['Book'].findAll().then(books => {
-    console.log(books.map(book => book.toJSON()))
-}).catch(console.error)
-.done()
+import Router from './router'
+
+const application: Express.Application = Express()
+
+Router.createRoutes(application)
+
+application.listen(3000, function () {
+    console.log('HTTP backend listening on port 3000!')
+})
+
+
 
