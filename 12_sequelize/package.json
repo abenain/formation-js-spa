@@ -1,0 +1,25 @@
+{
+  "name": "chapter-12-sequelize",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --target es5 --outDir build",
+    "build:watch": "tsc -w --target es5 --outDir build",
+    "seed": "npm run build && node build/models/seed/index.js",
+    "start": "node build/models/seed/index.js",
+    "watch": "concurrently --kill-others \"npm run build:watch\" \"nodemon build/index.js\""
+  },
+  "author": "Antoine Benain",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.12.0",
+    "q": "^1.4.1",
+    "sequelize": "^3.29.0"
+  },
+  "devDependencies": {
+    "@types/node": "^7.0.0",
+    "@types/q": "0.0.32",
+    "@types/sequelize": "^4.0.39"
+  }
+}
