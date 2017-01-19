@@ -35,6 +35,18 @@ const BookController = {
             response.end()
         })
         .done()
+    },
+    
+    // Create a book
+    create: (request:Express.Request, response:Express.Response) => {
+        sequelize.models['Book'].create(request.body).then(book => {
+            response.status(201)
+            response.send(book.id)
+        }).catch(error => {
+            console.error(error)
+            response.status(500)
+            response.end()
+        }).done()
     }
 }
 

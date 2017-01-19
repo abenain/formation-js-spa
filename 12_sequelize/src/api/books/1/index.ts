@@ -15,5 +15,8 @@ export const createRouter = () => {
     // GET /:bookId return one book
     router.get('/:bookId', BookController.show)
 
+    // POST / create a book
+    router.post('/', BookController.create)
+
     return router
 }
