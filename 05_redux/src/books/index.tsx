@@ -28,7 +28,7 @@ export default class Books extends React.Component<Props, State> {
     }
 
     public componentDidMount() {
-        axios.get('http://localhost:3000/books')
+        axios.get('http://codeberry.fr/1/books')
             .then(response => {
                 this.setState(Object.assign(this.state, {
                     books: Maybe.just(response.data)

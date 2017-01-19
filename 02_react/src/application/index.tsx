@@ -4,17 +4,11 @@
 import * as React from 'react'
 import {Maybe} from 'tsmonad'
 import axios from 'axios'
-import { Store } from 'redux'
 
-import {GlobalState} from "types";
 import Header from 'header'
 import List from 'list'
 import Grid from 'grid'
 import {Book} from 'types'
-
-interface Props{
-    store: Store<GlobalState>
-}
 
 interface State{
     view: string
@@ -24,9 +18,9 @@ interface State{
 const styles = require('./styles.scss')
 const title = 'Test ReactJS Application'
 
-export default class Application extends React.Component<Props, State>{
-    public constructor(props: Props){
-        super(props)
+export default class Application extends React.Component<{}, State>{
+    public constructor(){
+        super()
         this.state = {
             view: 'list',
             books: Maybe.nothing<Book[]>()
@@ -34,7 +28,7 @@ export default class Application extends React.Component<Props, State>{
     }
 
     public componentDidMount(){
-        axios.get('http://localhost:3000/books')
+        axios.get('http://codeberry.fr/1/books')
             .then(response => {
                 this.setState(Object.assign(this.state, {
                     books: Maybe.just(response.data)
