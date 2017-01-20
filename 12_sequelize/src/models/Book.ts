@@ -6,6 +6,7 @@ import * as Sequelize from 'sequelize'
 export const Book = {
     id: {
         primaryKey: true,
+        autoIncrement: true,
         type: Sequelize.INTEGER
     },
     title: {
