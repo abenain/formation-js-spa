@@ -13,10 +13,6 @@ export const Book = {
         type: Sequelize.STRING,
         allowNull: false
     },
-    author: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
     publish_date: {
         type: Sequelize.DATE,
         allowNull: false
@@ -33,4 +29,8 @@ export const Book = {
         type: Sequelize.STRING,
         allowNull: false
     }
+}
+
+export const createRelations = (sequelize: Sequelize.Sequelize) => {
+    sequelize.models['Book'].belongsTo(sequelize.models['Author'], {foreignKey: 'authorId'})
 }
