@@ -25,6 +25,10 @@ export const config = {
 export const createRelations = (sequelize: Sequelize.Sequelize) => {
     sequelize.models['User'].hasMany(sequelize.models['Report'], {
         foreignKey: 'creatorId',
-        as: 'Reports'
+        as: 'createdReports'
+    })
+    sequelize.models['User'].hasMany(sequelize.models['Report'], {
+        foreignKey: 'reviewerId',
+        as: 'pendingReviews'
     })
 }
