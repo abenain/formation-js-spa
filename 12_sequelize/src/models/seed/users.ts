@@ -4,9 +4,11 @@
 export const users = [{
     "id": 1,
     "firstname": "Immortan",
-    "lastname": "Joe"
+    "lastname": "Joe",
+    "email": "immortan@joe.com"
 }, {
     "id": 2,
     "firstname": "Max",
-    "lastname": "Rockatansky"
+    "lastname": "Rockatansky",
+    "email": "mad@max.com"
 }]

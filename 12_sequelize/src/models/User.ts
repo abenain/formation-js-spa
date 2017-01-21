@@ -16,10 +16,14 @@ export const config = {
     lastname: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            isEmail: true
+        }
     }
-    // TODO: add Adress
-    // TODO: add dob
-    // TODO: add mail
 }
 
 export const createRelations = (sequelize: Sequelize.Sequelize) => {
