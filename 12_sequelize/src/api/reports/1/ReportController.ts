@@ -27,6 +27,16 @@ const ReportController = {
             response.end()
         })
         .done()
+    },
+
+    // Create a report
+    create: (request:Express.Request, response:Express.Response) => {
+        sequelize.models['Report'].create(request.body).then((report: Sequelize.Instance<any>) => {
+            response.status(201).json(report.get('id'))
+        }).catch((error: Error) => {
+            response.status(500)
+            response.end()
+        }).done()
     }
 }
 

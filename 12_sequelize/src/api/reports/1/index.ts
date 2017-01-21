@@ -12,7 +12,7 @@ export const createRouter = () => {
     router.get('/', ReportController.index)
 
     // POST / create a reports
-    //router.post('/', ReportController.create)
+    router.post('/', ReportController.create)
 
     return router
 }
