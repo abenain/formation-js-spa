@@ -132,7 +132,9 @@ const books = [{
 
 console.log('Seeding database')
 
-sequelize.sync({force: true}).then(() => {
+sequelize.query('SET FOREIGN_KEY_CHECKS = 0').then(() => {
+  return sequelize.sync({force: true})
+}).then(() => {
     const promises = []
     for (let author of authors) {
         promises.push(sequelize.models['Author'].create(author))

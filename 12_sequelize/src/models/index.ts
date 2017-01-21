@@ -3,8 +3,8 @@
  */
 import * as Sequelize from 'sequelize'
 
-import { Book as BookConfig, createRelations as createBookRelations } from './Book'
-import { Author as AuthorConfig } from './Author'
+import { config as bookConfig, createRelations as createBookRelations } from './Book'
+import { config as authorConfig } from './Author'
 
 // Create connection to database
 const sequelize = new Sequelize('mysql://root:root@localhost:3306/chapter12', {
@@ -16,8 +16,8 @@ const defaultModelOptions = {
     freezeTableName: true // Model tableName will be the same as the model name
 }
 
-sequelize.define('Book', BookConfig, defaultModelOptions)
-sequelize.define('Author', AuthorConfig, defaultModelOptions)
+sequelize.define('Book', bookConfig, defaultModelOptions)
+sequelize.define('Author', authorConfig, defaultModelOptions)
 
 createBookRelations(sequelize)
 

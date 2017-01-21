@@ -9,7 +9,12 @@ import sequelize from '../../../models'
 const BookController = {
     // Return all books
     index: (request:Express.Request, response:Express.Response) => {
-        sequelize.models['Book'].findAll().then((books: Sequelize.Instance<any>[]) => {
+        sequelize.models['Book'].findAll({
+            include: [{
+                model: sequelize.models['Author'],
+                attributes: ['firstname', 'lastname', 'id']
+            }]
+        } as Sequelize.FindOptions).then((books: any[]) => {
             response.json(books.map(book => book.toJSON()))
         }).catch((error: Error) => {
             console.error(error)
@@ -23,7 +28,12 @@ const BookController = {
     show: (request:Express.Request, response:Express.Response) => {
         const requestedBookId = request.params.bookId
 
-        sequelize.models['Book'].findById(requestedBookId).then((book: Sequelize.Instance<any>) => {
+        sequelize.models['Book'].findById(requestedBookId, {
+            include: [{
+                model: sequelize.models['Author'],
+                attributes: ['firstname', 'lastname', 'id']
+            }]
+        } as Sequelize.FindOptions).then((book: Sequelize.Instance<any>) => {
             if(book){
                 response.json(book.toJSON())
             }

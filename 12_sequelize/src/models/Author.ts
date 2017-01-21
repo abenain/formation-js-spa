@@ -3,7 +3,7 @@
  */
 import * as Sequelize from 'sequelize'
 
-export const Author = {
+export const config = {
     id: {
         primaryKey: true,
         autoIncrement: true,
