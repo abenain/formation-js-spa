@@ -4,6 +4,7 @@
 import * as Sequelize from 'sequelize'
 
 import { config as bookConfig, createRelations as createBookRelations } from './Book'
+import { config as tagConfig, createRelations as createTagRelations } from './Tag'
 import { config as authorConfig } from './Author'
 
 // Create connection to database
@@ -17,8 +18,10 @@ const defaultModelOptions = {
 }
 
 sequelize.define('Book', bookConfig, defaultModelOptions)
+sequelize.define('Tag', tagConfig, defaultModelOptions)
 sequelize.define('Author', authorConfig, defaultModelOptions)
 
 createBookRelations(sequelize)
+createTagRelations(sequelize)
 
 export default sequelize

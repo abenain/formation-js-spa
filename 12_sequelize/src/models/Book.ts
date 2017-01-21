@@ -33,4 +33,5 @@ export const config = {
 
 export const createRelations = (sequelize: Sequelize.Sequelize) => {
     sequelize.models['Book'].belongsTo(sequelize.models['Author'], {foreignKey: 'authorId'})
+    sequelize.models['Book'].belongsToMany(sequelize.models['Tag'], {through: 'BookTag'})
 }
