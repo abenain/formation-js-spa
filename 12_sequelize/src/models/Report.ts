@@ -27,6 +27,6 @@ export const config = {
 
 export const createRelations = (sequelize: Sequelize.Sequelize) => {
     sequelize.models['Report'].belongsTo(sequelize.models['Book'], {foreignKey: 'bookId'})
-    sequelize.models['Report'].belongsTo(sequelize.models['User'], {foreignKey: 'creatorId'})
-    sequelize.models['Report'].belongsTo(sequelize.models['User'], {foreignKey: 'reviewerId'})
+    sequelize.models['Report'].belongsTo(sequelize.models['User'], {as: 'creator', foreignKey: 'creatorId'})
+    sequelize.models['Report'].belongsTo(sequelize.models['User'], {as: 'reviewer', foreignKey: 'reviewerId'})
 }
