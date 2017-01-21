@@ -10,6 +10,7 @@ import { users } from './users'
 import { books } from './books'
 import { bookTags } from './bookTags'
 import { tags } from './tags'
+import { reports } from './reports'
 
 console.log('Seeding database')
 
@@ -59,7 +60,16 @@ sequelize.query('SET FOREIGN_KEY_CHECKS = 0').then(() => {
     }
     return q.all(promises)
 }).then(() => {
+    const promises = []
     console.log('Done creating booksTags')
+    console.log('Creating reports...')
+
+    for (let report of reports) {
+        promises.push(sequelize.models['Report'].create(report))
+    }
+    return q.all(promises)
+}).then(() => {
+    console.log('Done creating reports')
     console.log('Created all items')
 }).catch(error => {
     console.error(error)
