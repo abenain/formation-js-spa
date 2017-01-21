@@ -21,10 +21,6 @@ export const config = {
         type: Sequelize.FLOAT,
         allowNull: false
     },
-    genre: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
     description: {
         type: Sequelize.STRING,
         allowNull: false

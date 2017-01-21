@@ -13,6 +13,10 @@ const BookController = {
             include: [{
                 model: sequelize.models['Author'],
                 attributes: ['firstname', 'lastname', 'id']
+            },{
+                model: sequelize.models['Tag'],
+                through: 'BookTag',
+                attributes: ['label', 'id']
             }]
         } as Sequelize.FindOptions).then((books: any[]) => {
             response.json(books.map(book => book.toJSON()))
