@@ -6,6 +6,7 @@ import * as Sequelize from 'sequelize'
 import { config as bookConfig, createRelations as createBookRelations } from './Book'
 import { config as tagConfig, createRelations as createTagRelations } from './Tag'
 import { config as authorConfig } from './Author'
+import { config as userConfig } from './User'
 
 // Create connection to database
 const sequelize = new Sequelize('mysql://root:root@localhost:3306/chapter12', {
@@ -20,6 +21,7 @@ const defaultModelOptions = {
 sequelize.define('Book', bookConfig, defaultModelOptions)
 sequelize.define('Tag', tagConfig, defaultModelOptions)
 sequelize.define('Author', authorConfig, defaultModelOptions)
+sequelize.define('User', userConfig, defaultModelOptions)
 
 createBookRelations(sequelize)
 createTagRelations(sequelize)

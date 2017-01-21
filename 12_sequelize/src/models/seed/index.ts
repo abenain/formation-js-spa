@@ -6,6 +6,7 @@ import * as process from 'process'
 
 import sequelize from '../'
 import { authors } from './authors'
+import { users } from './users'
 import { books } from './books'
 import { bookTags } from './bookTags'
 import { tags } from './tags'
@@ -15,6 +16,14 @@ console.log('Seeding database')
 sequelize.query('SET FOREIGN_KEY_CHECKS = 0').then(() => {
   return sequelize.sync({force: true})
 }).then(() => {
+    console.log('Creating users...')
+    const promises = []
+    for (let user of users) {
+        promises.push(sequelize.models['User'].create(user))
+    }
+    return q.all(promises)
+}).then(() => {
+    console.log('Done creating users')
     console.log('Creating authors...')
     const promises = []
     for (let author of authors) {
