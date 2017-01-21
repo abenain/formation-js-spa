@@ -3,6 +3,10 @@
  */
 export const users = [{
     "id": 1,
-    "firstname": "John",
-    "lastname": "Doe"
+    "firstname": "Immortan",
+    "lastname": "Joe"
+}, {
+    "id": 2,
+    "firstname": "Max",
+    "lastname": "Rockatansky"
 }]

@@ -24,3 +24,9 @@ export const config = {
         allowNull: false
     }
 }
+
+export const createRelations = (sequelize: Sequelize.Sequelize) => {
+    sequelize.models['Report'].belongsTo(sequelize.models['Book'], {foreignKey: 'bookId'})
+    sequelize.models['Report'].belongsTo(sequelize.models['User'], {foreignKey: 'creatorId'})
+    sequelize.models['Report'].belongsTo(sequelize.models['User'], {foreignKey: 'reviewerId'})
+}

@@ -21,3 +21,10 @@ export const config = {
     // TODO: add dob
     // TODO: add mail
 }
+
+export const createRelations = (sequelize: Sequelize.Sequelize) => {
+    sequelize.models['User'].hasMany(sequelize.models['Report'], {
+        foreignKey: 'creatorId',
+        as: 'Reports'
+    })
+}
