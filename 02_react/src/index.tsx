@@ -4,22 +4,20 @@
 import * as ReactDOM from 'react-dom'
 import * as React from 'react'
 
-const Welcome = (props: {name: string}) => (
+interface Props {
+    date: Date
+}
+
+const Clock = (props: Props) => (
     <div>
-        <h1>Hello, {props.name}!</h1>
+        <h1>Hello, world!</h1>
+        <h2>It is {props.date.toLocaleTimeString()}.</h2>
     </div>
 )
 
-const Application = () => (
-    <div>
-        <Welcome name="Sarah"/>
-        <Welcome name="Joel"/>
-        <Welcome name="Charlie"/>
-    </div>
-)
 const rerender = () => {
     ReactDOM.render(
-        <Application />,
+        <Clock date={new Date()} />,
         document.getElementById('root')
     )
 }
