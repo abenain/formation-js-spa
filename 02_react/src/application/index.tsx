@@ -2,74 +2,47 @@
  * Created by antoine on 23/12/2016.
  */
 import * as React from 'react'
-import {Maybe} from 'tsmonad'
-import axios from 'axios'
 
 import Header from 'header'
-import List from 'list'
-import Grid from 'grid'
-import {Book} from 'types'
 
-interface State{
-    view: string
-    books: Maybe<Book[]>
-}
-
-const styles = require('./styles.scss')
+//const styles = require('./styles.scss')
 const title = 'Test ReactJS Application'
 
-export default class Application extends React.Component<{}, State>{
-    public constructor(){
-        super()
-        this.state = {
-            view: 'list',
-            books: Maybe.nothing<Book[]>()
-        }
-    }
+/*const books = [{
+ "id": "bk001",
+ "title": "Everyday Italian",
+ "author": "Giada De Laurentiis",
+ "genre": "Languages",
+ "publish_date": "2005",
+ "price": 30
+ }, {
+ "id": "bk002",
+ "title": "Harry Potter",
+ "author": "J K. Rowling",
+ "genre": "Fantasy",
+ "publish_date": "2005",
+ "price": 29.99
+ }, {
+ "id": "bk003",
+ "title": "XQuery Kick Start",
+ "author": "James McGovern",
+ "genre": "Computer",
+ "publish_date": "2003",
+ "price": 49.99
+ }, {
+ "id": "bk004",
+ "title": "Learning XML",
+ "genre": "Computer",
+ "author": "Erik T. Ray",
+ "publish_date": "2003",
+ "price": 39.95
+ }]*/
 
-    public componentDidMount(){
-        axios.get('http://codeberry.fr/1/books')
-            .then(response => {
-                this.setState(Object.assign(this.state, {
-                    books: Maybe.just(response.data)
-                }))
-            })
-            .catch(error => {
-                // TODO: deal with error case
-                console.log(error);
-            });
-    }
+const Application = () => (
+    <div>
+        <Header title={title}/>
+        <h1>Hello, World</h1>
+    </div>
+)
 
-
-    private switchView(){
-        const newView = this.state.view === 'list' ? 'grid' : 'list'
-        this.setState(Object.assign(this.state, {
-            view: newView
-        }))
-    }
-
-    private getSwitchViewButton(){
-        const buttonLabel = this.state.view === 'list' ? 'Vue Grille' : 'Vue Liste'
-        return <div className={styles.buttonContainer}>
-            <button  className={styles.switchViewModeButton} onClick={() => this.switchView()}>{buttonLabel}</button>
-        </div>
-    }
-
-
-    public render(){
-        return <div>
-            <Header title={title}/>
-            {this.state.books.caseOf({
-                just: (books: Book[]) => {
-                    const bookView = this.state.view === 'grid' ? <Grid books={books}/> : <List books={books}/>
-                    return <div>
-                        {this.getSwitchViewButton()}
-                        {bookView}
-                    </div>
-                },
-                nothing: () => <div>Loading...</div>
-            })}
-
-        </div>
-    }
-}
+export default Application
