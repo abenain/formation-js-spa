@@ -4,16 +4,22 @@
 import * as ReactDOM from 'react-dom'
 import * as React from 'react'
 
-const Clock = () => (
+const Welcome = (props: {name: string}) => (
     <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {new Date().toLocaleTimeString()}.</h2>
+        <h1>Hello, {props.name}!</h1>
     </div>
 )
 
+const Application = () => (
+    <div>
+        <Welcome name="Sarah"/>
+        <Welcome name="Joel"/>
+        <Welcome name="Charlie"/>
+    </div>
+)
 const rerender = () => {
     ReactDOM.render(
-        <Clock />,
+        <Application />,
         document.getElementById('root')
     )
 }
