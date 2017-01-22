@@ -4,7 +4,7 @@ var webpack = require('webpack')
  * Created by antoine on 22/12/2016.
  */
 module.exports = {
-	entry: './src/index.tsx',
+	entry: './src/root/index.tsx',
 	output: {
 		path: './build',
 		publicPath: '/build/',
