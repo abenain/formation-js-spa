@@ -1,5 +1,5 @@
-Single Page Applications: Chapter 02 - React
-============================================
+Single Page Applications: Chapter XX - React book list
+======================================================
 
 Installation
 ------------
