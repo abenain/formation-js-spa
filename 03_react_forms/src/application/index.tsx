@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Maybe } from 'tsmonad'
-import {MuiThemeProvider, lightBaseTheme, getMuiTheme} from 'material-ui/styles';
+import { Paper } from 'material-ui';
+import { MuiThemeProvider, lightBaseTheme, getMuiTheme } from 'material-ui/styles';
 
 import Header from 'header'
 import Form from "form"
@@ -8,6 +9,7 @@ import List from "list"
 import { Document } from "../types"
 
 const styles = require('./styles.scss')
+const documentIcon = require('./document.svg')
 const title = 'Test ReactJS Application'
 
 const documents: Document[] = [{
@@ -46,6 +48,15 @@ export default class Applicaton extends React.Component<{}, State>{
     }
 
     public render(){
+
+        const noDocumentSelectedPanel = (
+            <Paper className={styles.card} >
+                <div className={styles.noDocumentSelectedPanel}>
+                    <img className={styles.icon} src={documentIcon} alt="Document"/>
+                    <h2>No Document selected</h2>
+                </div>
+            </Paper>
+        )
         return (
             <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
                 <div>
@@ -55,11 +66,11 @@ export default class Applicaton extends React.Component<{}, State>{
                             <List documents={documents} onDocumentSelected={this.onDocumentSelected}/>
                         </div>
                         <div className={styles.formPanel}>
-                            <Form document={this.state.selectedDocumentReference.caseOf({
-                                just: (reference) => documents.find(document => document.reference === reference),
-                                nothing: () => null
-                            })} />
-                        </div>
+                        { this.state.selectedDocumentReference.caseOf({
+                            just: reference => <Form document={documents.find(document => document.reference === reference)} />,
+                            nothing: () => noDocumentSelectedPanel
+                        }) }
+                                </div>
                     </div>
                 </div>
             </MuiThemeProvider>
