@@ -33,12 +33,14 @@ class Form extends React.Component<{}, State>{
             <div className={styles.container}>
                 <label>
                     Name:
-                    <input type="text"
+                    <input className={styles.input}
+                           type="text"
                            name="name"
                            ref="name"
                            defaultValue='Enter your name' />
                 </label>
-                <button onClick={this.handleFormSubmit}>Save</button>
+                <button className={styles.button}
+                        onClick={this.handleFormSubmit}>Save</button>
             </div>
         )
     }
