@@ -1,0 +1,20 @@
+$componentHeight: 500px;
+
+.container{
+	margin: 100px auto;
+	width: 700px;
+}
+
+.sidePanel{
+	vertical-align: top;
+	display: inline-block;
+	width: 200px;
+	height: $componentHeight;
+	overflow-y: auto;
+}
+
+.formPanel{
+	display: inline-block;
+	width: 500px;
+	height: $componentHeight;
+}

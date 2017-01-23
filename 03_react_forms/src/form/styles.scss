@@ -1,54 +1,29 @@
-.container{
-	margin: 100px auto;
-	width: 400px;
-}
-
-.row{
-	padding-bottom: 10px;
-}
-
-.labelColumn{
-	padding-right: 10px;
-	text-align: right;
-	vertical-align: top;
-	width: 190px;
-	display: inline-block;
-}
-
-.inputColumn{
-	width: 200px;
-	display: inline-block;
+.card{
+	padding: 50px 0;
+	height: 100%;
 }
 
 .label{
-	width: 50px;
-}
-
-.input{
-	height: 25px;
-	width: 200px;
-	font-size: 16px;
-}
-
-.textarea{
-	width: 200px;
-	font-size: 16px;
-}
-
-.select{
-	width: 200px;
-	font-size: 16px;
-}
-
-.buttonPanel{
-	padding-top: 45px;
+	display: inline-block;
 	text-align: right;
+	margin-right: 24px;
+	width: 200px;
 }
 
-.button{
-	margin-left: 5px;
-	padding: 0 10px;
-	height: 30px;
-	font-size: 16px;
+.multilineTextFieldLabel{
 	vertical-align: top;
+	margin-top: 15px;
+}
+
+.control{
+	display: inline-block;
+}
+
+.submit{
+	margin: 12px;
+	margin-top: 60px;
+}
+
+.textCenter{
+	text-align: center;
 }

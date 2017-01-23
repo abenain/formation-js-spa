@@ -2,113 +2,76 @@
  * Created by antoine on 25/12/2016.
  */
 import * as React from 'react'
+import classnames from 'classnames'
+import {TextField, AutoComplete, RaisedButton, Paper} from 'material-ui'
+import ChipInput from 'material-ui-chip-input'
 
 const styles = require('./styles.scss')
 
-interface State{
-    title: string,
-    reference: string,
-    object: string,
-    nature: number
-}
+const dataSourceNature = [
+    {text: 'Mémo', value: 1},
+    {text: 'Note', value: 2},
+    {text: 'Procédure', value: 3},
+]
 
-class Form extends React.Component<{}, State>{
+const dataSourceThemes = [{text: 'Equipe Operationnelle d\'hygiène', value: 1}, {text: 'Divers', value: 2}]
 
-    public refs: {
-        name: HTMLInputElement,
-        [k: string]: React.ReactInstance
-    }
-
-    public constructor(props: {}){
-        super(props)
-        this.state = {
-            title: '',
-            reference: '',
-            object: '',
-            nature: 1
-        }
-    }
-
-    private onValueChange = (key: string, event: React.FormEvent<any>) => {
-        const newValue = (event.target as any).value
-        const newState: {[k: string]: any} = {}
-        newState[key] = newValue as any
-        this.setState(newState as State)
-    }
-    
-    private handleFormSubmit = (event: React.SyntheticEvent<any>) => {
-        const documentValues = {
-            title: this.state.title,
-            reference: this.state.reference,
-            object: this.state.object,
-            nature: this.state.nature
-        }
-        console.log('Form was submitted')
-        console.log('Document values: ' + JSON.stringify(documentValues))
-    }
-
-    public render(){
-        return (
-            <div className={styles.container}>
-                <div className={styles.row}>
-                    <div className={styles.labelColumn}>
-                        <span>Titre du document:</span>
-                    </div>
-                    <div className={styles.inputColumn}>
-                        <input className={styles.input}
-                               type="text"
-                               name="title"
-                               value={this.state.title}
-                               onChange={(event: React.FormEvent<any>) => this.onValueChange('title', event)} />
-                    </div>
-                </div>
-                <div className={styles.row}>
-                    <div className={styles.labelColumn}>
-                        <span>Référence du document:</span>
-                    </div>
-                    <div className={styles.inputColumn}>
-                        <input className={styles.input}
-                               type="text"
-                               name="reference"
-                               value={this.state.reference}
-                               onChange={(event: React.FormEvent<any>) => this.onValueChange('reference', event)} />
-                    </div>
-                </div>
-                <div className={styles.row}>
-                    <div className={styles.labelColumn}>
-                        <span>Objet du document:</span>
-                    </div>
-                    <div className={styles.inputColumn}>
-                         <textarea className={styles.textarea}
-                                   rows={4}
-                                   name="object"
-                                   value={this.state.object}
-                                   onChange={(event: React.FormEvent<any>) => this.onValueChange('object', event)} />
-                    </div>
-                </div>
-                <div className={styles.row}>
-                    <div className={styles.labelColumn}>
-                        <span>Nature du document:</span>
-                    </div>
-                    <div className={styles.inputColumn}>
-                        <select className={styles.select}
-                                name="nature"
-                                value={this.state.nature}
-                                onChange={(event: React.FormEvent<any>) => this.onValueChange('nature', event)} >
-                            <option value="1">Mémo</option>
-                            <option value="2">Note</option>
-                            <option value="3">Procédure</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div className={styles.buttonPanel}>
-                    <button className={styles.button}
-                            onClick={this.handleFormSubmit}>Save</button>
-                </div>
+const Form = () => (
+    <Paper className={styles.card}>
+        <div className={styles.row}>
+            <div className={styles.label}>Titre</div>
+            <div className={styles.control}>
+                <TextField hintText="Titre du document"/>
             </div>
-        )
-    }
-}
+        </div>
+
+        <div className={styles.row}>
+            <div className={styles.label}>Référence</div>
+            <div className={styles.control}>
+                <TextField hintText="Référence du document"/>
+            </div>
+        </div>
+
+        <div className={styles.row}>
+            <div className={classnames(styles.label, styles.multilineTextFieldLabel)}>Objet</div>
+            <div className={styles.control}>
+                <TextField hintText="Objet"
+                           multiLine={true}
+                           rows={2}
+                           rowsMax={4}/>
+            </div>
+        </div>
+
+        <div className={styles.row}>
+            <div className={styles.label}>Nature</div>
+            <div className={styles.control}>
+                <AutoComplete
+                    floatingLabelText="Nature du document"
+                    dataSource={dataSourceNature}
+                />
+            </div>
+        </div>
+
+
+        <div className={styles.row}>
+            <div className={classnames(styles.label, styles.multilineTextFieldLabel)}>Thèmes</div>
+            <div className={styles.control}>
+                <ChipInput
+                    dataSource={dataSourceThemes}
+                    dataSourceConfig={{ text: 'text', value: 'value' }}
+                    onChange={(chips: any) => {console.log(chips)}}
+                />
+            </div>
+        </div>
+
+        <div className={classnames(styles.row, styles.textCenter)}>
+            <RaisedButton label="Sauvegarder"
+                          primary={true}
+                          className={styles.submit}
+                          onClick={() => {alert('clicked')}}
+            />
+        </div>
+    </Paper>
+)
 
 export default Form
