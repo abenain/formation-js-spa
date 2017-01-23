@@ -3,6 +3,14 @@
  */
 import * as React from 'react'
 
-const Form = () => <h1>Hello!</h1>
+const styles = require('./styles.scss')
+
+const Form = () => <form action="http://codeberry.fr/1/books" className={styles.container}>
+    <label>
+        Name:
+        <input type="text" name="name" />
+    </label>
+    <input type="submit" value="Submit" />
+</form>
 
 export default Form
