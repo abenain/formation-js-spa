@@ -11,12 +11,13 @@
     "start": "webpack-dev-server --config config/webpack.config.js --inline --hot"
   },
   "devDependencies": {
-    "@types/node": "^6.0.40",
-    "@types/react": "^0.14.55",
-    "@types/react-dom": "^0.14.19",
     "@types/classnames": "0.0.32",
     "@types/material-ui": "^0.16.44",
+    "@types/node": "6.0.40",
+    "@types/react": "^0.14.55",
+    "@types/react-dom": "^0.14.19",
     "@types/react-tap-event-plugin": "0.0.30",
+    "@types/tsmonad": "0.0.29",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-plugin-transform-es2015-classes": "^6.18.0",
@@ -43,7 +44,8 @@
     "material-ui": "^0.16.5",
     "material-ui-chip-input": "^0.11.3",
     "react": "^15.4.1",
+    "react-dom": "^15.4.1",
     "react-tap-event-plugin": "^2.0.1",
-    "react-dom": "^15.4.1"
+    "tsmonad": "^0.6.1"
   }
 }

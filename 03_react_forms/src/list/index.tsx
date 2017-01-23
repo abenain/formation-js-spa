@@ -9,13 +9,18 @@ import { Document } from '../types'
 const styles = require('./styles.scss')
 
 interface Props {
-    documents: Document[]
+    documents: Document[],
+    onDocumentSelected: (documentReference: string) => void
 }
 
 const List = (props: Props) => (
     <Paper className={styles.card}>
         <MaterialUIList>
-            {props.documents.map(document => <ListItem key={document.reference} primaryText={document.title} />)}
+            {props.documents.map(document => (
+                <ListItem key={document.reference}
+                          primaryText={document.title}
+                          onClick={() => props.onDocumentSelected(document.reference)}/>
+            ))}
         </MaterialUIList>
     </Paper>
 )

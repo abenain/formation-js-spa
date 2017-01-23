@@ -6,6 +6,8 @@ import classnames from 'classnames'
 import {TextField, AutoComplete, RaisedButton, Paper} from 'material-ui'
 import ChipInput from 'material-ui-chip-input'
 
+import { Document } from '../types'
+
 const styles = require('./styles.scss')
 
 const dataSourceNature = [
@@ -16,19 +18,31 @@ const dataSourceNature = [
 
 const dataSourceThemes = [{text: 'Equipe Operationnelle d\'hygiène', value: 1}, {text: 'Divers', value: 2}]
 
-const Form = () => (
-    <Paper className={styles.card}>
+interface Props {
+    document: Document
+}
+
+const getNatureForDocument = (document: Document) => {
+    if(!document){
+        return ''
+    }
+    const nature = dataSourceNature.find(currentNature => currentNature.value === document.nature)
+    return nature && nature.text
+}
+
+const Form = (props: Props) => (
+    <Paper className={styles.card} key={props.document ? props.document.reference : 'empty'}>
         <div className={styles.row}>
             <div className={styles.label}>Titre</div>
             <div className={styles.control}>
-                <TextField hintText="Titre du document"/>
+                <TextField defaultValue={props.document && props.document.title} hintText="Titre du document"/>
             </div>
         </div>
 
         <div className={styles.row}>
             <div className={styles.label}>Référence</div>
             <div className={styles.control}>
-                <TextField hintText="Référence du document"/>
+                <TextField  defaultValue={props.document && props.document.reference} hintText="Référence du document"/>
             </div>
         </div>
 
@@ -36,6 +50,7 @@ const Form = () => (
             <div className={classnames(styles.label, styles.multilineTextFieldLabel)}>Objet</div>
             <div className={styles.control}>
                 <TextField hintText="Objet"
+                           defaultValue={props.document && props.document.object}
                            multiLine={true}
                            rows={2}
                            rowsMax={4}/>
@@ -46,6 +61,7 @@ const Form = () => (
             <div className={styles.label}>Nature</div>
             <div className={styles.control}>
                 <AutoComplete
+                    searchText={getNatureForDocument(props.document)}
                     floatingLabelText="Nature du document"
                     dataSource={dataSourceNature}
                 />
