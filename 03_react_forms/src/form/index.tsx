@@ -11,6 +11,11 @@ interface State{
 
 class Form extends React.Component<{}, State>{
 
+    public refs: {
+        name: HTMLInputElement,
+        [k: string]: React.ReactInstance
+    }
+
     public constructor(props: {}){
         super(props)
         this.state = {
@@ -20,14 +25,7 @@ class Form extends React.Component<{}, State>{
     
     private handleFormSubmit = (event: React.SyntheticEvent<any>) => {
         console.log('Form was submitted')
-        console.log('New name is: ' + this.state.name)
-    }
-    
-    private handleNameChanged = (event: React.FormEvent<any>) => {
-        const newName = (event.target as any).value
-        this.setState({
-            name: newName
-        })
+        console.log('New name is: ' + this.refs.name.value)
     }
 
     public render(){
@@ -36,9 +34,9 @@ class Form extends React.Component<{}, State>{
                 <label>
                     Name:
                     <input type="text"
-                           name="name" 
-                           value={this.state.name}
-                           onChange={this.handleNameChanged} />
+                           name="name"
+                           ref="name"
+                           defaultValue='Enter your name' />
                 </label>
                 <button onClick={this.handleFormSubmit}>Save</button>
             </div>
