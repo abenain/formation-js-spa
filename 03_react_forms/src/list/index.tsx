@@ -12,6 +12,7 @@ const plusIcon = require('./plus.png')
 interface Props {
     documents: Document[],
     onDocumentSelected: (documentReference: string) => void
+    onCreateDocument: () => void
 }
 
 const List = (props: Props) => (
@@ -28,7 +29,7 @@ const List = (props: Props) => (
             </div>
             <div className={styles.bottomPanel}>
                 <Divider />
-                <FloatingActionButton className={styles.actionButton} mini={true} onClick={() => {alert('clicked')}} >
+                <FloatingActionButton className={styles.actionButton} mini={true} onClick={props.onCreateDocument} >
                     <img src={plusIcon} alt="+"/>
                 </FloatingActionButton>
             </div>

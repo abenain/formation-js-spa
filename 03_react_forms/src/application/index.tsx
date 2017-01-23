@@ -30,7 +30,8 @@ const documents: Document[] = [{
 }]
 
 interface State {
-    selectedDocumentReference: Maybe<string>
+    selectedDocumentReference?: Maybe<string>,
+    isCreatingDocument?: boolean
 }
 
 export default class Applicaton extends React.Component<{}, State>{
@@ -38,16 +39,52 @@ export default class Applicaton extends React.Component<{}, State>{
     public constructor(props: any){
         super(props)
         this.state = {
-            selectedDocumentReference: Maybe.nothing<string>()
+            selectedDocumentReference: Maybe.nothing<string>(),
+            isCreatingDocument: false
         }
     }
     private onDocumentSelected = (documentReference: string) => {
+        if(this.state.isCreatingDocument){
+            if(!confirm('Cancel Document creation?')){
+                return
+            }
+        }
         this.setState({
-            selectedDocumentReference: Maybe.maybe(documentReference)
+            selectedDocumentReference: Maybe.maybe(documentReference),
+            isCreatingDocument: false
+        })
+    }
+    private onCreateDocumentButtonClicked = () => {
+        this.setState({
+            selectedDocumentReference: Maybe.nothing<string>(),
+            isCreatingDocument: true
+        })
+    }
+    private getAllDocuments = () => {
+        if(this.state.isCreatingDocument){
+            return [{
+                title: 'Nouveau Document',
+                reference: '',
+                object: '',
+                nature: 1
+            }].concat(documents)
+        }
+
+        return documents
+    }
+    private getSelectedElement = () => {
+        if(this.state.isCreatingDocument){
+            return this.getAllDocuments()[0]
+        }
+
+        return this.state.selectedDocumentReference.caseOf({
+            just: reference => documents.find(document => document.reference === reference),
+            nothing: () => null
         })
     }
 
     public render(){
+        const selectedDocument = this.getSelectedElement()
 
         const noDocumentSelectedPanel = (
             <Paper className={styles.card} >
@@ -63,14 +100,13 @@ export default class Applicaton extends React.Component<{}, State>{
                     <Header title={title}></Header>
                     <div className={styles.container}>
                         <div className={styles.sidePanel}>
-                            <List documents={documents} onDocumentSelected={this.onDocumentSelected}/>
+                            <List documents={this.getAllDocuments()}
+                                  onCreateDocument={this.onCreateDocumentButtonClicked}
+                                  onDocumentSelected={this.onDocumentSelected}/>
                         </div>
                         <div className={styles.formPanel}>
-                        { this.state.selectedDocumentReference.caseOf({
-                            just: reference => <Form document={documents.find(document => document.reference === reference)} />,
-                            nothing: () => noDocumentSelectedPanel
-                        }) }
-                                </div>
+                            { selectedDocument ?  <Form document={this.getSelectedElement()} /> : noDocumentSelectedPanel }
+                        </div>
                     </div>
                 </div>
             </MuiThemeProvider>

@@ -31,7 +31,7 @@ const getNatureForDocument = (document: Document) => {
 }
 
 const Form = (props: Props) => (
-    <Paper className={styles.card} key={props.document ? props.document.reference : 'empty'}>
+    <Paper className={styles.card} key={props.document ? props.document.reference || props.document.title : 'empty'}>
         <div className={styles.row}>
             <div className={styles.label}>Titre</div>
             <div className={styles.control}>
