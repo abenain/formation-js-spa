@@ -1,5 +1,5 @@
 {
-  "name": "chapter-03-forms-with-material-ui",
+  "name": "chapter-03-react-forms",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,7 +11,7 @@
     "start": "webpack-dev-server --config config/webpack.config.js --inline --hot"
   },
   "devDependencies": {
-    "@types/node": "^6.0.53",
+    "@types/node": "^6.0.40",
     "@types/react": "^0.14.55",
     "@types/react-dom": "^0.14.19",
     "@types/classnames": "0.0.32",
