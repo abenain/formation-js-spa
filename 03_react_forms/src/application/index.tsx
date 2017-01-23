@@ -7,12 +7,13 @@ import Header from 'header'
 import Form from "form"
 import List from "list"
 import { Document } from "../types"
+import * as webservices from "../webservices"
 
 const styles = require('./styles.scss')
 const documentIcon = require('./document.svg')
 const title = 'Test ReactJS Application'
 
-const documents: Document[] = [{
+const mockDocuments: Document[] = [{
     title: 'How to grow funghi',
     reference: 'PCD-002301',
     object: 'Describes in depth how to grow a large population of funghi',
@@ -30,6 +31,7 @@ const documents: Document[] = [{
 }]
 
 interface State {
+    documents?: Document[],
     selectedDocumentReference?: Maybe<string>,
     isCreatingDocument?: boolean
 }
@@ -39,6 +41,7 @@ export default class Applicaton extends React.Component<{}, State>{
     public constructor(props: any){
         super(props)
         this.state = {
+            documents: mockDocuments,
             selectedDocumentReference: Maybe.nothing<string>(),
             isCreatingDocument: false
         }
@@ -60,6 +63,34 @@ export default class Applicaton extends React.Component<{}, State>{
             isCreatingDocument: true
         })
     }
+    private onSaveDocumentClicked = (newDocument: Document) => {
+        const savePromise = this.state.isCreatingDocument ? webservices.createDocument(newDocument) : webservices.updateDocument(newDocument)
+        savePromise.then((result: string) => {
+
+            // Creation d'un document
+            if(this.state.isCreatingDocument){
+                return this.setState((previousState: State) => ({
+                    documents: [newDocument].concat(previousState.documents),
+                    selectedDocumentReference: Maybe.maybe(newDocument.reference),
+                    isCreatingDocument: false
+                }))
+            }
+
+            // Update d'un document
+            return this.setState((previousState: State) => ({
+                documents: previousState.documents.map(document => {
+                    if(document.reference === newDocument.reference){
+                        return newDocument
+                    }
+                    return document
+                }),
+                selectedDocumentReference: Maybe.maybe(newDocument.reference),
+                isCreatingDocument: false
+            }))
+        }).catch((error: Error) => {
+            console.log(error)
+        })
+    }
     private getAllDocuments = () => {
         if(this.state.isCreatingDocument){
             return [{
@@ -67,10 +98,10 @@ export default class Applicaton extends React.Component<{}, State>{
                 reference: '',
                 object: '',
                 nature: 1
-            }].concat(documents)
+            }].concat(this.state.documents)
         }
 
-        return documents
+        return this.state.documents
     }
     private getSelectedElement = () => {
         if(this.state.isCreatingDocument){
@@ -78,7 +109,7 @@ export default class Applicaton extends React.Component<{}, State>{
         }
 
         return this.state.selectedDocumentReference.caseOf({
-            just: reference => documents.find(document => document.reference === reference),
+            just: reference => this.getAllDocuments().find(document => document.reference === reference),
             nothing: () => null
         })
     }
@@ -105,7 +136,7 @@ export default class Applicaton extends React.Component<{}, State>{
                                   onDocumentSelected={this.onDocumentSelected}/>
                         </div>
                         <div className={styles.formPanel}>
-                            { selectedDocument ?  <Form document={this.getSelectedElement()} /> : noDocumentSelectedPanel }
+                            { selectedDocument ?  <Form document={this.getSelectedElement()} onSaveDocument={this.onSaveDocumentClicked} /> : noDocumentSelectedPanel }
                         </div>
                     </div>
                 </div>

@@ -12,8 +12,9 @@
   },
   "devDependencies": {
     "@types/classnames": "0.0.32",
-    "@types/material-ui": "^0.16.44",
+    "@types/material-ui": "^0.16.48",
     "@types/node": "6.0.40",
+    "@types/q": "0.0.32",
     "@types/react": "^0.14.55",
     "@types/react-dom": "^0.14.19",
     "@types/react-tap-event-plugin": "0.0.30",
@@ -43,6 +44,7 @@
     "classnames": "^2.2.5",
     "material-ui": "^0.16.5",
     "material-ui-chip-input": "^0.11.3",
+    "q": "^1.4.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-tap-event-plugin": "^2.0.1",
