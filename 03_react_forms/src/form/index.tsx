@@ -5,12 +5,25 @@ import * as React from 'react'
 
 const styles = require('./styles.scss')
 
-const Form = () => <form action="http://codeberry.fr/1/books" className={styles.container}>
-    <label>
-        Name:
-        <input type="text" name="name" />
-    </label>
-    <input type="submit" value="Submit" />
-</form>
+class Form extends React.Component<{}, {}>{
+
+    private handleFormSubmit = (event: React.SyntheticEvent<any>) => {
+        console.log('Form was submitted')
+        event.preventDefault()
+    }
+
+    public render(){
+        return (
+            <form onSubmit={this.handleFormSubmit}
+                  className={styles.container}>
+                <label>
+                    Name:
+                    <input type="text" name="name" />
+                </label>
+                <input type="submit" value="Submit" />
+            </form>
+        )
+    }
+}
 
 export default Form
