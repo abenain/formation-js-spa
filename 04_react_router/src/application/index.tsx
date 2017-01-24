@@ -9,12 +9,13 @@ import Header from "header"
 const title = 'Test ReactJS Application'
 
 interface Props{
-    children: any
+    children: React.ReactInstance // Ce champ est rempli automatiquement par React
 }
 
 const Application = ({children}: Props) => <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
     <div>
         <Header title={title}/>
+        { /* on peut faire référence aux children dans la fonction de rendu */ }
         {children}
     </div>
 </MuiThemeProvider>
