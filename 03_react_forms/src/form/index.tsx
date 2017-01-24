@@ -25,6 +25,10 @@ interface Props {
     isSavingDocument: boolean
 }
 
+interface State {
+    showReferenceIsRequired: boolean
+}
+
 const getNatureForDocument = (document: Document) => {
     if(!document){
         return ''
@@ -33,7 +37,7 @@ const getNatureForDocument = (document: Document) => {
     return nature && nature.text
 }
 
-export default class Form extends React.Component<Props, {}>{
+export default class Form extends React.Component<Props, State>{
     public refs: {
         title: TextField,
         reference: TextField,
@@ -41,13 +45,37 @@ export default class Form extends React.Component<Props, {}>{
         nature: AutoComplete,
         [k: string]: React.ReactInstance
     }
+    public constructor(props: Props){
+        super(props)
+        this.state = {
+            showReferenceIsRequired: false
+        }
+    }
     private saveButtonClicked = () => {
+        const newReference = this.refs.reference.getValue()
+        if(!newReference.trim()){
+            return this.setState({
+                showReferenceIsRequired: true
+            })
+        }
+
         this.props.onSaveDocument({
             title: this.refs.title.getValue(),
-            reference: this.refs.reference.getValue(),
+            reference: newReference,
             object: this.refs.object.getValue(),
             nature: 1
         })
+
+        this.setState({
+            showReferenceIsRequired: false
+        })
+    }
+    public componentWillReceiveProps(nextProps: Props){
+        if(nextProps.document.reference !== this.props.document.reference){
+            this.setState({
+                showReferenceIsRequired: false
+            })
+        }
     }
     public render(){
         return (
@@ -62,7 +90,10 @@ export default class Form extends React.Component<Props, {}>{
                 <div className={styles.row}>
                     <div className={styles.label}>Référence</div>
                     <div className={styles.control}>
-                        <TextField ref="reference" defaultValue={this.props.document && this.props.document.reference} hintText="Référence du document"/>
+                        <TextField ref="reference"
+                                   errorText={this.state.showReferenceIsRequired ? 'Ce champ est requis' : null}
+                                   defaultValue={this.props.document && this.props.document.reference}
+                                   hintText="Référence du document"/>
                     </div>
                 </div>
 
