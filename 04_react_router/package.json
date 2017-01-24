@@ -38,6 +38,7 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",
+    "webpack-material-design-icons": "0.0.2",
     "webpack-notifier": "^1.5.0"
   },
   "dependencies": {
