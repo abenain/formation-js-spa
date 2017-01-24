@@ -61,7 +61,7 @@ export default class Applicaton extends React.Component<{}, State>{
     }
     private onCreateDocumentButtonClicked = () => {
         this.setState({
-            selectedDocumentReference: Maybe.nothing<string>(),
+            selectedDocumentReference: Maybe.just(''),
             isCreatingDocument: true
         })
     }
@@ -73,7 +73,7 @@ export default class Applicaton extends React.Component<{}, State>{
         })
 
         savePromise.then((result: string) => {
-            
+
             // Creation d'un document
             if(this.state.isCreatingDocument){
                 return this.setState((previousState: State) => ({
@@ -145,6 +145,7 @@ export default class Applicaton extends React.Component<{}, State>{
                         <div className={styles.sidePanel}>
                             <List documents={this.getAllDocuments()}
                                   onCreateDocument={this.onCreateDocumentButtonClicked}
+                                  selectedDocumentReference={this.state.selectedDocumentReference}
                                   onDocumentSelected={this.onDocumentSelected}/>
                         </div>
                         <div className={styles.formPanel}>
