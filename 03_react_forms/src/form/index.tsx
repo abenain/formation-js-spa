@@ -9,6 +9,7 @@ import ChipInput from 'material-ui-chip-input'
 import { Document } from '../types'
 
 const styles = require('./styles.scss')
+const loadingGif = require('./loading.gif')
 
 const dataSourceNature = [
     {text: 'Mémo', value: 1},
@@ -20,7 +21,8 @@ const dataSourceThemes = [{text: 'Equipe Operationnelle d\'hygiène', value: 1},
 
 interface Props {
     document: Document,
-    onSaveDocument: (newDocument: Document) => void
+    onSaveDocument: (newDocument: Document) => void,
+    isSavingDocument: boolean
 }
 
 const getNatureForDocument = (document: Document) => {
@@ -101,11 +103,14 @@ export default class Form extends React.Component<Props, {}>{
                 </div>
 
                 <div className={classnames(styles.row, styles.textCenter)}>
-                    <RaisedButton label="Sauvegarder"
-                                  primary={true}
-                                  className={styles.submit}
-                                  onClick={this.saveButtonClicked}
-                    />
+                    {this.props.isSavingDocument ?  <div className={styles.loadingButton}>
+                                                        <img src={loadingGif} alt="loading"/>
+                                                    </div> : <RaisedButton label="Sauvegarder"
+                                                              primary={true}
+                                                              className={styles.submit}
+                                                              onClick={this.saveButtonClicked}>
+                                                             </RaisedButton>
+                    }
                 </div>
             </Paper>
         )

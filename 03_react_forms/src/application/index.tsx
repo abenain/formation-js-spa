@@ -34,6 +34,7 @@ interface State {
     documents?: Document[],
     selectedDocumentReference?: Maybe<string>,
     isCreatingDocument?: boolean
+    isSavingDocument?: boolean
 }
 
 export default class Applicaton extends React.Component<{}, State>{
@@ -43,7 +44,8 @@ export default class Applicaton extends React.Component<{}, State>{
         this.state = {
             documents: mockDocuments,
             selectedDocumentReference: Maybe.nothing<string>(),
-            isCreatingDocument: false
+            isCreatingDocument: false,
+            isSavingDocument: false
         }
     }
     private onDocumentSelected = (documentReference: string) => {
@@ -65,14 +67,20 @@ export default class Applicaton extends React.Component<{}, State>{
     }
     private onSaveDocumentClicked = (newDocument: Document) => {
         const savePromise = this.state.isCreatingDocument ? webservices.createDocument(newDocument) : webservices.updateDocument(newDocument)
-        savePromise.then((result: string) => {
 
+        this.setState({
+            isSavingDocument: true
+        })
+
+        savePromise.then((result: string) => {
+            
             // Creation d'un document
             if(this.state.isCreatingDocument){
                 return this.setState((previousState: State) => ({
                     documents: [newDocument].concat(previousState.documents),
                     selectedDocumentReference: Maybe.maybe(newDocument.reference),
-                    isCreatingDocument: false
+                    isCreatingDocument: false,
+                    isSavingDocument: false
                 }))
             }
 
@@ -85,11 +93,15 @@ export default class Applicaton extends React.Component<{}, State>{
                     return document
                 }),
                 selectedDocumentReference: Maybe.maybe(newDocument.reference),
-                isCreatingDocument: false
+                isCreatingDocument: false,
+                isSavingDocument: false
             }))
         }).catch((error: Error) => {
             console.log(error)
-        })
+            this.setState({
+                isSavingDocument: false
+            })
+        }).done()
     }
     private getAllDocuments = () => {
         if(this.state.isCreatingDocument){
@@ -136,7 +148,9 @@ export default class Applicaton extends React.Component<{}, State>{
                                   onDocumentSelected={this.onDocumentSelected}/>
                         </div>
                         <div className={styles.formPanel}>
-                            { selectedDocument ?  <Form document={this.getSelectedElement()} onSaveDocument={this.onSaveDocumentClicked} /> : noDocumentSelectedPanel }
+                            { selectedDocument ?  <Form document={this.getSelectedElement()}
+                                                        onSaveDocument={this.onSaveDocumentClicked}
+                                                        isSavingDocument={this.state.isSavingDocument}/> : noDocumentSelectedPanel }
                         </div>
                     </div>
                 </div>
