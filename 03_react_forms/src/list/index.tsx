@@ -2,7 +2,6 @@
  * Created by antoine on 23/01/2017.
  */
 import * as React from 'react'
-import { Maybe } from 'tsmonad'
 import {Paper, Divider, FloatingActionButton, List as MaterialUIList, ListItem} from 'material-ui'
 
 import { Document } from '../types'
@@ -11,17 +10,7 @@ const styles = require('./styles.scss')
 const plusIcon = require('./plus.png')
 
 interface Props {
-    documents: Document[],
-    selectedDocumentReference: Maybe<string>,
-    onDocumentSelected: (documentReference: string) => void,
-    onCreateDocument: () => void
-}
-
-const getListItemStyle = (document: Document, selectedDocumentReference: Maybe<string>) => {
-    return selectedDocumentReference.caseOf({
-        just: reference => document.reference === reference ? {backgroundColor: '#66d7e5'} : {},
-        nothing: () => ({})
-    })
+    documents: Document[]
 }
 
 const List = (props: Props) => (
@@ -32,14 +21,13 @@ const List = (props: Props) => (
                     {props.documents.map(document => (
                         <ListItem key={document.reference}
                                   primaryText={document.title}
-                                  style={getListItemStyle(document, props.selectedDocumentReference)}
-                                  onClick={() => props.onDocumentSelected(document.reference)}/>
+                                  onClick={() => console.log(document.reference)}/>
                     ))}
                 </MaterialUIList>
             </div>
             <div className={styles.bottomPanel}>
                 <Divider />
-                <FloatingActionButton className={styles.actionButton} mini={true} onClick={props.onCreateDocument} >
+                <FloatingActionButton className={styles.actionButton} mini={true} onClick={() => console.log('+ button clicked')} >
                     <img src={plusIcon} alt="+"/>
                 </FloatingActionButton>
             </div>
