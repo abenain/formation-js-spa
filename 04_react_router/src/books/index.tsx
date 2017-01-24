@@ -14,9 +14,10 @@ interface State {
     books?:Maybe<Book[]>
 }
 
+
 interface Props {
-    location: {
-        query?: {
+    location: { // Ce champ est rempli automatiquement par react-router après le mount du composant dans le DOM
+        query?: { // Le champ query ne sera rempli que s'il est présent dans la barre d'adresse du navigateur
             view: ViewType
         }
     }
@@ -31,15 +32,21 @@ export default class Books extends React.Component<Props, State> {
             view: 'list',
             books: Maybe.nothing<Book[]>()
         }
+        // this.props.location n'est pas encore disponible ici
     }
 
     public componentDidMount() {
+        // Ici, on peut accéder aux détails de l'URL et vérifier si on a une query
         if(this.props.location.query){
             const view = this.props.location.query.view
+
+            // Verifier que view est bien 'grid' ou 'list'
             if(this.isValidViewType(view)){
                 this.doChangeView(view)
             }
         }
+
+        // Récupérer la liste de livres
         axios.get('http://codeberry.fr/1/books')
             .then(response => {
                 this.setState(Object.assign(this.state, {
@@ -52,9 +59,16 @@ export default class Books extends React.Component<Props, State> {
             });
     }
 
+    // Cette méthode du lifecycle permet de détecter les changements de props, et de changer le state en conséquence
     public componentWillReceiveProps(nextProps: Props){
+
+        // La query n'est peut-etre pas définie dans les nouvelles props
         const viewFromURLQuery = nextProps.location.query && nextProps.location.query.view
+
+        // On vérifie que le parametre view vaut bien 'grid' ou 'list'
         if(this.isValidViewType(viewFromURLQuery)){
+
+            // On vérifie que les props ont bien changé avant de modifier le state
             if(this.state.view !== viewFromURLQuery){
                 this.doChangeView(viewFromURLQuery as viewType)
             }
