@@ -1,6 +1,7 @@
 import * as React from 'react'
 import axios from 'axios'
 import { Maybe } from 'tsmonad'
+import { browserHistory }from 'react-router'
 
 import List from "books/list"
 import Grid from "books/grid"
@@ -35,10 +36,8 @@ export default class Books extends React.Component<Props, State> {
     public componentDidMount() {
         if(this.props.location.query){
             const view = this.props.location.query.view
-            if(view === 'list' || view === 'grid'){
-                this.setState({
-                    view: view
-                })
+            if(this.isValidViewType(view)){
+                this.doChangeView(view)
             }
         }
         axios.get('http://codeberry.fr/1/books')
@@ -53,11 +52,28 @@ export default class Books extends React.Component<Props, State> {
             });
     }
 
+    public componentWillReceiveProps(nextProps: Props){
+        const viewFromURLQuery = nextProps.location.query && nextProps.location.query.view
+        if(this.isValidViewType(viewFromURLQuery)){
+            if(this.state.view !== viewFromURLQuery){
+                this.doChangeView(viewFromURLQuery as viewType)
+            }
+        }
+    }
+
+    private doChangeView = (view: viewType) => {
+        this.setState({
+            view: view
+        })
+    }
+
+    private isValidViewType = (viewType: string) => {
+        return viewType === 'list' || viewType === 'grid'
+    }
+
     private switchView() {
         const newView = this.state.view === 'list' ? 'grid' : 'list'
-        this.setState({
-            view: newView
-        })
+        browserHistory.push('/books?view=' + newView)
     }
 
     private getSwitchViewButton(){
