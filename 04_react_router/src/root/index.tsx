@@ -22,6 +22,7 @@ window.onload = () => {
             <Route path='/' component={Application}>
                 <Route path='/books' component={Books} />
                 <Route path='/documents' component={Documents} />
+                <Route path='/documents/:reference' component={Documents} />
                 <IndexRoute component={Home}/>
             </Route>
         </Router>,

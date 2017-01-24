@@ -27,6 +27,13 @@ const mockDocuments: Document[] = [{
     nature: 1
 }]
 
+interface Props {
+    children: any,
+    params: {
+        reference?: string
+    }
+}
+
 interface State {
     documents?: Document[],
     selectedDocumentReference?: Maybe<string>,
@@ -34,7 +41,7 @@ interface State {
     isSavingDocument?: boolean
 }
 
-export default class Applicaton extends React.Component<{}, State>{
+export default class Applicaton extends React.Component<Props, State>{
 
     public constructor(props: any){
         super(props)
@@ -43,6 +50,16 @@ export default class Applicaton extends React.Component<{}, State>{
             selectedDocumentReference: Maybe.nothing<string>(),
             isCreatingDocument: false,
             isSavingDocument: false
+        }
+    }
+    public componentDidMount = () => {
+        if(this.props.params.reference){
+            this.onDocumentSelected(this.props.params.reference)
+        }
+    }
+    public componentWillReceiveProps(nextProps: Props){
+        if(nextProps.params.reference !== this.props.params.reference){
+            this.onDocumentSelected(nextProps.params.reference)
         }
     }
     private onDocumentSelected = (documentReference: string) => {
@@ -139,8 +156,7 @@ export default class Applicaton extends React.Component<{}, State>{
                 <div className={styles.sidePanel}>
                     <List documents={this.getAllDocuments()}
                           onCreateDocument={this.onCreateDocumentButtonClicked}
-                          selectedDocumentReference={this.state.selectedDocumentReference}
-                          onDocumentSelected={this.onDocumentSelected}/>
+                          selectedDocumentReference={this.state.selectedDocumentReference} />
                 </div>
                 <div className={styles.formPanel}>
                     { selectedDocument ?  <Form document={this.getSelectedElement()}

@@ -15,6 +15,9 @@ const Home = () => <div className={styles.container}>
             <li className={styles.homeMenuEntry}>
                 <Link to="/documents">Document list</Link>
             </li>
+            <li className={styles.homeMenuEntry}>
+                <Link to="/documents/NOT-004415">Document NOT-004415</Link>
+            </li>
         </ul>
     </Paper>
 </div>

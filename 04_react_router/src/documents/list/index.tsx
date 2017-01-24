@@ -4,6 +4,7 @@
 import * as React from 'react'
 import { Maybe } from 'tsmonad'
 import {Paper, Divider, FloatingActionButton, List as MaterialUIList, ListItem} from 'material-ui'
+import { browserHistory }from 'react-router'
 
 import { Document } from '../../types'
 
@@ -13,7 +14,6 @@ const plusIcon = require('./plus.png')
 interface Props {
     documents: Document[],
     selectedDocumentReference: Maybe<string>,
-    onDocumentSelected: (documentReference: string) => void,
     onCreateDocument: () => void
 }
 
@@ -33,7 +33,7 @@ const List = (props: Props) => (
                         <ListItem key={document.reference}
                                   primaryText={document.title}
                                   style={getListItemStyle(document, props.selectedDocumentReference)}
-                                  onClick={() => props.onDocumentSelected(document.reference)}/>
+                                  onClick={() => browserHistory.push('/documents/' + document.reference)}/>
                     ))}
                 </MaterialUIList>
             </div>
