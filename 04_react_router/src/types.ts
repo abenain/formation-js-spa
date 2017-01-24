@@ -8,3 +8,10 @@ export interface Book{
     publish_date: string
     price: number
 }
+
+export interface Document {
+    title: string,
+    reference: string,
+    object: string,
+    nature: number
+}

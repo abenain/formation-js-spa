@@ -1,0 +1,36 @@
+.card{
+	padding: 50px 0;
+	height: 100%;
+}
+
+.label{
+	display: inline-block;
+	text-align: right;
+	margin-right: 24px;
+	width: 120px;
+}
+
+.multilineTextFieldLabel{
+	vertical-align: top;
+	margin-top: 15px;
+}
+
+.control{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.submit{
+	margin-top: 60px;
+}
+
+.textCenter{
+	text-align: center;
+}
+
+.loadingButton{
+	padding-top: 3px;
+	width: 140px;
+	margin: 60px auto 0;
+	border: 1px black solid;
+}

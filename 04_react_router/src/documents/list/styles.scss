@@ -1,0 +1,27 @@
+.card{
+	padding: 16px 0;
+	height: 100%;
+}
+
+.cardContents{
+	height: 100%;
+	position: relative;
+}
+
+.listPanel {
+	height: 420px;
+	overflow-y: auto;
+}
+
+.bottomPanel{
+	position: absolute;
+	text-align: center;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.actionButton{
+	margin-top: 16px;
+	color: white;
+}

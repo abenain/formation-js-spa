@@ -2,7 +2,7 @@
  * Created by antoine on 24/12/2016.
  */
 import * as React from 'react'
-import {Book} from 'types'
+import {Book} from '../../types'
 
 const styles = require('./styles.scss')
 
