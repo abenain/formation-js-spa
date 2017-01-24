@@ -70,12 +70,12 @@ export default class Books extends React.Component<Props, State> {
 
             // On vérifie que les props ont bien changé avant de modifier le state
             if(this.state.view !== viewFromURLQuery){
-                this.doChangeView(viewFromURLQuery as viewType)
+                this.doChangeView(viewFromURLQuery as ViewType)
             }
         }
     }
 
-    private doChangeView = (view: viewType) => {
+    private doChangeView = (view: ViewType) => {
         this.setState({
             view: view
         })
