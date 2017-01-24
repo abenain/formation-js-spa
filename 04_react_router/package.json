@@ -13,7 +13,7 @@
   "devDependencies": {
     "@types/classnames": "0.0.32",
     "@types/material-ui": "^0.16.44",
-    "@types/node": "^6.0.53",
+    "@types/node": "6.0.40",
     "@types/react": "^0.14.55",
     "@types/react-dom": "^0.14.19",
     "@types/react-router": "^2.0.41",
