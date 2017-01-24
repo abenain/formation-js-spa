@@ -31,5 +31,8 @@ module.exports = {
 			{ test: /\.(eot|woff|ttf|woff2)$/, loader: "file?name=[name].[ext]" }
 		]
 	},
-	plugins: [new webpack.ProvidePlugin({React: 'react'})]
+	plugins: [new webpack.ProvidePlugin({React: 'react'})],
+	devServer: {
+		historyApiFallback: true
+	}
 };
