@@ -3,7 +3,7 @@
  */
 import * as React from 'react'
 import {Book} from 'types'
-import BookIcon from 'book-icon'
+import BookIcon from '../book-icon'
 
 const styles = require('./styles.scss')
 
