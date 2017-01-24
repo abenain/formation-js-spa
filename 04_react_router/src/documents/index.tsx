@@ -28,7 +28,7 @@ const mockDocuments: Document[] = [{
 }]
 
 interface Props {
-    children: any,
+    children: React.ReactInstance,
     params: {
         reference?: string
     }
