@@ -6,14 +6,24 @@ import List from "books/list"
 import Grid from "books/grid"
 import { Book } from 'types'
 
+type ViewType = 'grid' | 'list'
+
 interface State {
-    view:string,
-    books:Maybe<Book[]>
+    view?:ViewType,
+    books?:Maybe<Book[]>
+}
+
+interface Props {
+    location: {
+        query?: {
+            view: ViewType
+        }
+    }
 }
 
 const styles = require('./styles.scss')
 
-export default class Books extends React.Component<{}, State> {
+export default class Books extends React.Component<Props, State> {
     public constructor(props: any) {
         super(props)
         this.state = {
@@ -23,6 +33,14 @@ export default class Books extends React.Component<{}, State> {
     }
 
     public componentDidMount() {
+        if(this.props.location.query){
+            const view = this.props.location.query.view
+            if(view === 'list' || view === 'grid'){
+                this.setState({
+                    view: view
+                })
+            }
+        }
         axios.get('http://codeberry.fr/1/books')
             .then(response => {
                 this.setState(Object.assign(this.state, {
@@ -37,9 +55,9 @@ export default class Books extends React.Component<{}, State> {
 
     private switchView() {
         const newView = this.state.view === 'list' ? 'grid' : 'list'
-        this.setState(Object.assign(this.state, {
+        this.setState({
             view: newView
-        }))
+        })
     }
 
     private getSwitchViewButton(){
