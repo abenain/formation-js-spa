@@ -9,7 +9,7 @@ import Header from "header"
 const title = 'Test ReactJS Application'
 
 interface Props{
-    children: any
+    children: React.ReactInstance
 }
 
 const Application = ({children}: Props) => <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
