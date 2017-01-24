@@ -23,9 +23,21 @@ const Header = ({title}: Props) => <div className={styles.container}>
         />
         <RaisedButton
             className={styles.button}
+            icon={<FontIcon className="material-icons">view_list</FontIcon>}
+            onClick={() => { browserHistory.push('/books?view=list') }}
+        />
+        <RaisedButton
+            className={styles.button}
+            icon={<FontIcon className="material-icons">view_module</FontIcon>}
+            onClick={() => { browserHistory.push('/books?view=grid') }}
+        />
+        <div className={styles.separator} />
+        <RaisedButton
+            className={styles.button}
             icon={<FontIcon className="material-icons">insert_drive_file</FontIcon>}
             onClick={() => { browserHistory.push('/documents') }}
         />
+        <div className={styles.separator} />
         <RaisedButton
             className={styles.button}
             primary={true}
