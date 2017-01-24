@@ -2,7 +2,7 @@
  * Created by antoine on 23/12/2016.
  */
 import * as React from 'react'
-import browserHistory from 'react-router/lib/browserHistory'
+import { browserHistory }from 'react-router'
 import { RaisedButton, FontIcon } from 'material-ui'
 
 const styles = require('./styles.scss')
