@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Maybe } from 'tsmonad'
-import { Paper } from 'material-ui';
+import { Paper } from 'material-ui'
+import { InjectedRouter, Route } from 'react-router'
 
 import Form from "./form"
 import List from "./list"
@@ -29,9 +30,12 @@ const mockDocuments: Document[] = [{
 
 interface Props {
     children: React.ReactInstance,
+    location: string,
     params: {
         reference?: string
-    }
+    },
+    router: InjectedRouter,
+    route: Route
 }
 
 interface State {
@@ -56,6 +60,15 @@ export default class Applicaton extends React.Component<Props, State>{
         if(this.props.params.reference){
             this.onDocumentSelected(this.props.params.reference)
         }
+        this.props.router.setRouteLeaveHook(this.props.route, (nextLocation: any) => {
+            // Si le path a changé, on demande confirmation avant de changer de page
+            if(this.props.location !== nextLocation && this.state.isCreatingDocument){
+                return 'Cancel Document creation?'
+            }
+
+            // Sinon on change la route
+            return true
+        })
     }
     public componentWillReceiveProps(nextProps: Props){
         if(nextProps.params.reference !== this.props.params.reference){
@@ -63,11 +76,6 @@ export default class Applicaton extends React.Component<Props, State>{
         }
     }
     private onDocumentSelected = (documentReference: string) => {
-        if(this.state.isCreatingDocument){
-            if(!confirm('Cancel Document creation?')){
-                return
-            }
-        }
         this.setState({
             selectedDocumentReference: Maybe.maybe(documentReference),
             isCreatingDocument: false
