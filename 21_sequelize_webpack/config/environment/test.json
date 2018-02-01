@@ -1,0 +1,36 @@
+{
+  "port": 8080,
+  "mongo": {
+    "uri": "mongodb://10.0.3.213/followracer-staging"
+  },
+  "openstackCredentials": {
+    "provider": "amazon",
+    "keyId": "AKIAIIHFR75LEEW6URVQ",
+    "key": "s+2wR1iFJSeHicddrAgUeS6iyG6kS1GRpTnQ0hcE",
+    "region": "eu-west-1"
+  },
+  "stripeKeys": {
+    "secret": "sk_test_DQ8Ch5COa6jxUE8V6e8BP4pZ",
+    "publishable": "pk_test_TXTmMrgimEZSfuRPKJ8jxohl"
+  },
+  "fbCredentials": {
+    "appId": 1588684677838842,
+    "appSecret": "bd722f9139ae0126cb2afac119ec9e59"
+  },
+  "cloudContainerName": "followracer-staging",
+  "cloudProcessPhotoQueueUrl": "https://sqs.eu-west-1.amazonaws.com/118088038480/staging-process-photo",
+  "cloudProcessPhotoPromoQueueUrl": "https://sqs.eu-west-1.amazonaws.com/118088038480/staging-process-photo-promo",
+  "email": {
+    "contactAddress": "FollowRacer Dev <photopuce.abn@gmail.com>"
+  },
+  "smtp": {
+    "user": "followracer-production",
+    "password": "WGEaD&y1-OXc.=$"
+  },
+  "followRacerWebsiteUrl": "https://test.followracer.com",
+  "followRacerConsoleUrl": "https://console.test.followracer.com",
+  "followRacerLivetrackingUrl": "https://livetracking.test.followracer.com",
+  "followRacerBackendUrl": "https://test.followracer.com",
+  "seedDB": false,
+  "cloudRepository": true
+}
